@@ -45,7 +45,7 @@ public class BookingRestService {
         return response;	
 	}
 
-	//http://localhost:8080/TravelExperts/rs/booking/getbooking/1
+	//http://localhost:8080/TravelExperts/rs/booking/getbooking/1304
 	@GET
 	@Path("/getbooking/{bookingid}")
     @Produces(MediaType.APPLICATION_JSON)
@@ -69,23 +69,23 @@ public class BookingRestService {
     @Produces(MediaType.TEXT_PLAIN)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public String postbooking(String jsonString) {
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory("TravelExperts");
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("TravelExperts");
         EntityManager em = factory.createEntityManager();
         Gson gson = new Gson();
         Booking b = gson.fromJson(jsonString, Booking.class);
-        String response;
         em.getTransaction().begin();
-        Booking updatedbooking = em.merge(b);
+        Booking insertedbooking = em.merge(b);
         em.getTransaction().commit();
-        if (updatedbooking != null){
-        	response = "Booking updated";
+        String response;
+        if (insertedbooking != null){
+        	response = "Updated";
         }
         else{
         	response = "Update Failed";
         }
         em.close();
         factory.close();
-        return response;	
+        return response;		
 	}
 
 	//http://localhost:8080/TravelExperts/rs/booking/putbooking
@@ -113,7 +113,7 @@ public class BookingRestService {
         return response;	
 	}
 
-	//http://localhost:8080/TravelExperts/rs/booking/deletebooking/5
+	//http://localhost:8080/TravelExperts/rs/booking/deletebooking/1304
 	@DELETE
 	@Path("/deletebooking/{bookingid}")
 	public String deleteBooking(@PathParam("bookingid") int bookingId) {

@@ -90,8 +90,7 @@ public class CustomerRestService {
 	@Path("/putcustomer")
     @Produces(MediaType.TEXT_PLAIN)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public String putCustomer(String jsonString)
-	{
+	public String putCustomer(String jsonString){
         EntityManagerFactory factory = Persistence.createEntityManagerFactory("TravelExperts");
         EntityManager em = factory.createEntityManager();
         Gson gson = new Gson();
