@@ -39,17 +39,12 @@ public class Customer implements Serializable {
 
 	private String custUserPwd;
 
-	/*
-	 * //bi-directional many-to-one association to Booking
-	 * 
-	 * @OneToMany(mappedBy="customer") private List<Booking> bookings;
-	 */
-
 	public Customer() {
 	}
 
+	
 	public Customer(int customerId, String custFirstName, String custLastName, String custAddress, String custCity,
-			String custProv, String custCountry, String custPostal, String custPhone, String custEmail,
+			String custProv, String custPostal, String custCountry, String custEmail, String custPhone,
 			String custUserID, String custUserPwd) {
 		super();
 		this.customerId = customerId;
@@ -58,13 +53,14 @@ public class Customer implements Serializable {
 		this.custAddress = custAddress;
 		this.custCity = custCity;
 		this.custProv = custProv;
-		this.custCountry = custCountry;
 		this.custPostal = custPostal;
-		this.custPhone = custPhone;
+		this.custCountry = custCountry;
 		this.custEmail = custEmail;
+		this.custPhone = custPhone;
 		this.custUserID = custUserID;
 		this.custUserPwd = custUserPwd;
 	}
+
 
 	public int getCustomerId() {
 		return this.customerId;
@@ -162,19 +158,4 @@ public class Customer implements Serializable {
 		this.custUserPwd = custUserPwd;
 	}
 
-	/*
-	 * public List<Booking> getBookings() { return this.bookings; }
-	 * 
-	 * public void setBookings(List<Booking> bookings) { this.bookings = bookings; }
-	 * 
-	 * public Booking addBooking(Booking booking) { getBookings().add(booking);
-	 * booking.setCustomer(this);
-	 * 
-	 * return booking; }
-	 * 
-	 * public Booking removeBooking(Booking booking) {
-	 * getBookings().remove(booking); booking.setCustomer(null);
-	 * 
-	 * return booking; }
-	 */
 }

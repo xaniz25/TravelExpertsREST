@@ -8,12 +8,11 @@
 	function addCustomer(myform)
 	{
 		var data = '{"custAddress":"' + myform.custAddress.value
-			+ '","custBusPhone":"' + myform.custBusPhone.value
+			+ '","custPhone":"' + myform.custPhone.value
 			+ '","custCity":"' + myform.custCity.value
 			+ '","custCountry":"' + myform.custCountry.value
 			+ '","custEmail":"' + myform.custEmail.value
 			+ '","custFirstName":"' + myform.custFirstName.value
-			+ '","custHomePhone":"' + myform.custHomePhone.value
 			+ '","custLastName":"' + myform.custLastName.value
 			+ '","custPostal":"' + myform.custPostal.value
 			+ '","custProv":"' + myform.custProv.value
@@ -42,13 +41,11 @@
 		Province: <input type="text" name="custProv" /><br />
 		Postal: <input type="text" name="custPostal" /><br />
 		Country: <input type="text" name="custCountry" /><br />
-		Home Phone: <input type="text" name="custHomePhone" /><br />
-		Business Phone: <input type="text" name="custBusPhone" /><br />
+		Phone: <input type="text" name="custPhone" /><br />
 		Email: <input type="text" name="custEmail" /><br />
 		User ID: <input type="text" name="custUserID" /><br />
 		Password: <input type="text" name="custUserPwd" /><br />
 		<button onclick="addCustomer(this.form)">Send</button>
 	</form>
-	<p id="result"></p>
 </body>
 </html>
