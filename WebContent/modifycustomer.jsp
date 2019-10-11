@@ -1,13 +1,24 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<title>Insert title here</title>
 <title>Travel Experts - Modify Customer</title>
 <script src="jquery.js"></script>
-
 <script>
-function getCustomer(myform)
+function getCustomer(id, myform)
 {
+	$.ajax({
+		url:"http://localhost:8080/TravelExperts/rs/customer/getcustomer/" + id,
+		data: data,
+		type:"GET",
+		contentType:"application/json",
+		dataType:"text",
+		complete: function(req, stat){ $("#result").html(stat); }
+	});
+	
 	var data = '{"customerId":' + myform.customerId.value
 		+ ',"custAddress":"' + myform.custAddress.value
 		+ '","custPhone":"' + myform.custPhone.value
@@ -20,17 +31,8 @@ function getCustomer(myform)
 		+ '","custProv":"' + myform.custProv.value
 		+ '","custUserID":"' + myform.custUserID.value
 		+ '","custUserPwd":"' + myform.custUserPwd.value + '"}';
-		
-		console.log("data:" + data);
 
-	$.ajax({
-		url:"http://localhost:8080/TravelExperts/rs/customer/getcustomer/{customerid}",
-		data: data,
-		type:"POST",
-		contentType:"application/json",
-		dataType:"text",
-		complete: function(req, stat){ $("#result").html(stat); }
-	});
+		console.log("data:" + data);
 }
 
 function updateCustomer(myform)
@@ -60,26 +62,11 @@ function updateCustomer(myform)
 		});
 }
 
-function deleteCustomer(myform)
+function deleteCustomer(id)
 {
-	var data = '{"customerId":' + myform.customerId.value
-		+ ',"custAddress":"' + myform.custAddress.value
-		+ '","custPhone":"' + myform.custPhone.value
-		+ '","custCity":"' + myform.custCity.value
-		+ '","custCountry":"' + myform.custCountry.value
-		+ '","custEmail":"' + myform.custEmail.value
-		+ '","custFirstName":"' + myform.custFirstName.value
-		+ '","custLastName":"' + myform.custLastName.value
-		+ '","custPostal":"' + myform.custPostal.value
-		+ '","custProv":"' + myform.custProv.value
-		+ '","custUserID":"' + myform.custUserID.value
-		+ '","custUserPwd":"' + myform.custUserPwd.value + '"}';
-		
-		console.log("data:" + data);
-
 	$.ajax({
-		url:"http://localhost:8080/TravelExperts/rs/customer/deletecustomer/{customerid}",
-		data: data,
+		url:"http://localhost:8080/TravelExperts/rs/customer/deletecustomer/" + id,
+		data: '{"customerId":'+id+'}',
 		type:"DELETE",
 		contentType:"application/json",
 		dataType:"text",
@@ -89,8 +76,9 @@ function deleteCustomer(myform)
 </script>
 </head>
 <body>
-	<form onload="getcustomer(this.form)">
-		Customer ID: <input type="number"name="customerId" /><br />
+<% int id = Integer.parseInt(request.getParameter("CustomerId")); %>
+	<form onload="getcustomer(<%=id%>, this)">
+		Customer ID: <input type="number" name="customerId" id="customerId"/><br />
 		First Name: <input type="text" name="custFirstName" /><br />
 		Last Name: <input type="text" name="custLastName" /><br />
 		Address: <input type="text" name="custAddress" /><br />
@@ -103,7 +91,7 @@ function deleteCustomer(myform)
 		User ID: <input type="text" name="custUserID" /><br />
 		Password: <input type="text" name="custUserPwd" /><br />
 		<button onclick="updateCustomer(this.form)">Edit</button>
-		<button onclick="deleteCustomer(this.form)">Delete</button>
+		<button onclick="deleteCustomer(<%=id%>)">Delete</button>
 	</form>
 </body>
 </html>

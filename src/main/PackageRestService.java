@@ -111,7 +111,7 @@ public class PackageRestService {
         return response;	
 	}
 
-	//http://localhost:8080/TravelExperts/rs/package/deletepackage/10
+	//http://localhost:8080/TravelExperts/rs/package/deletepackage/5
 	@DELETE
 	@Path("/deletepackage/{packageid}")
 	public String deletePackage(@PathParam("packageid") int packageId) {

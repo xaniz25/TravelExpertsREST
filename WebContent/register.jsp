@@ -1,8 +1,10 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert Customer</title>
+<title>Travel Experts - Register Customer</title>
 <script src="jquery.js"></script>
 <script>
 	function addCustomer(myform)
@@ -44,7 +46,8 @@
 		Phone: <input type="text" name="custPhone" /><br />
 		Email: <input type="text" name="custEmail" /><br />
 		User ID: <input type="text" name="custUserID" /><br />
-		Password: <input type="text" name="custUserPwd" /><br />
+		Password: <input type="password" name="custUserPwd" /><br />
+		Confirm Password: <input type=password" /><br />
 		<button onclick="addCustomer(this.form)">Send</button>
 	</form>
 </body>
