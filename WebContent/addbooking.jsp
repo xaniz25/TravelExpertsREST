@@ -13,7 +13,7 @@
 			+ '","bookingNo":"' + myform.bookingNo.value
 			+ '","travelerCount":' + myform.travelerCount.value
 			+ ',"customerId":' + myform.customerId.value
-			+ ',"tripTypeId":"' + myform.tripTypeId.value
+			+ ',"tripType":"' + myform.tripType.value
 			+ '","packageId":' + myform.packageId.value + '}';
 			
 			console.log("data:" + data);
@@ -33,9 +33,9 @@
 	<form>
 		Customer ID: <input type="number" name="customerId" /><br />
 		Booking No: <input type="text" name="bookingNo" /><br />
-		Booking Date: <input type="datetime-local" name="bookingDate" /><br />
+		Booking Date: <input type="date" name="bookingDate" /><br />
 		Traveler Count: <input type="number" name="travelerCount" /><br />
-		Trip Type: <input type="text" name="tripTypeId" /><br />
+		Trip Type: <input type="text" name="tripType" /><br />
 		Package ID: <input type="number" name="packageId" /><br />
 		<button onclick="addBooking(this.form)">Send</button>
 	</form>

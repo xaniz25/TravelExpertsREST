@@ -7,31 +7,29 @@
 <title>Travel Experts - Register Customer</title>
 <script src="jquery.js"></script>
 <script>
-	function addCustomer(myform)
-	{
-		var data = '{"custAddress":"' + myform.custAddress.value
-			+ '","custPhone":"' + myform.custPhone.value
-			+ '","custCity":"' + myform.custCity.value
-			+ '","custCountry":"' + myform.custCountry.value
-			+ '","custEmail":"' + myform.custEmail.value
-			+ '","custFirstName":"' + myform.custFirstName.value
-			+ '","custLastName":"' + myform.custLastName.value
-			+ '","custPostal":"' + myform.custPostal.value
-			+ '","custProv":"' + myform.custProv.value
-			+ '","custUserID":"' + myform.custUserID.value
-			+ '","custUserPwd":"' + myform.custUserPwd.value + '"}';
-			
-			console.log("data:" + data);
+function addCustomer(myform)
+{
+	var data = '{"custAddress":"' + myform.custAddress.value
+		+ '","custPhone":"' + myform.custPhone.value
+		+ '","custCity":"' + myform.custCity.value
+		+ '","custCountry":"' + myform.custCountry.value
+		+ '","custEmail":"' + myform.custEmail.value
+		+ '","custFirstName":"' + myform.custFirstName.value
+		+ '","custLastName":"' + myform.custLastName.value
+		+ '","custPostal":"' + myform.custPostal.value
+		+ '","custProv":"' + myform.custProv.value
+		+ '","custUserID":"' + myform.custUserID.value
+		+ '","custUserPwd":"' + myform.custUserPwd.value + '"}';
 
-		$.ajax({
-			url:"http://localhost:8080/TravelExperts/rs/customer/putcustomer",
-			data: data,
-			type:"PUT",
-			contentType:"application/json",
-			dataType:"text",
-			complete: function(req, stat){ $("#result").html(stat); }
-		});
-	}
+	$.ajax({
+		url:"http://localhost:8080/TravelExperts/rs/customer/putcustomer",
+		data: data,
+		type:"PUT",
+		contentType:"application/json",
+		dataType:"text",
+		complete: function(req, stat){ $("#result").html(stat); }
+	});
+}
 </script>
 </head>
 <body>
@@ -47,7 +45,7 @@
 		Email: <input type="text" name="custEmail" /><br />
 		User ID: <input type="text" name="custUserID" /><br />
 		Password: <input type="password" name="custUserPwd" /><br />
-		Confirm Password: <input type=password" /><br />
+		Confirm Password: <input type="password" /><br />
 		<button onclick="addCustomer(this.form)">Send</button>
 	</form>
 </body>

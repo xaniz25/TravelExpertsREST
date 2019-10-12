@@ -44,8 +44,8 @@ function modifyPackage(id)
                 <td><%=rs.getInt("PackageId") %></td>
                 <td><%=rs.getString("PkgName") %></td>
                 <td><%=rs.getString("PkgDesc") %></td>
-                <td><%=rs.getString("PkgStartDate") %></td>
-                <td><%=rs.getString("PkgEndDate") %></td>
+                <td><%=rs.getDate("PkgStartDate") %></td>
+                <td><%=rs.getDate("PkgEndDate") %></td>
                 <td><%=rs.getDouble("PkgBasePrice") %></td>
                 <td><%=rs.getDouble("PkgAgencyCommission") %></td>
                 <td><button id="<%=rs.getInt("PackageId") %>" onClick="modifyPackage(this.id)">Modify</button>

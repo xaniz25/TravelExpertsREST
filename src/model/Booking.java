@@ -17,14 +17,14 @@ public class Booking implements Serializable {
 	@Id
 	private int bookingId;
 
-	@Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.DATE)
 	private Date bookingDate;
 
 	private String bookingNo;
 
-	private double travelerCount;
+	private Integer travelerCount;
 
-	private String tripTypeId;
+	private String tripType;
 
 	private Integer customerId;
 	
@@ -49,15 +49,15 @@ public class Booking implements Serializable {
 	}
 
 	
-	public Booking(int bookingId, Date bookingDate, String bookingNo, double travelerCount, Integer customerId,
-			String tripTypeId, Integer packageId) {
+	public Booking(int bookingId, Date bookingDate, String bookingNo, Integer travelerCount, Integer customerId,
+			String tripType, Integer packageId) {
 		super();
 		this.bookingId = bookingId;
 		this.bookingDate = bookingDate;
 		this.bookingNo = bookingNo;
 		this.travelerCount = travelerCount;
 		this.customerId = customerId;
-		this.tripTypeId = tripTypeId;
+		this.tripType = tripType;
 		this.packageId = packageId;
 	}
 
@@ -86,27 +86,27 @@ public class Booking implements Serializable {
 		this.bookingNo = bookingNo;
 	}
 
-	public double getTravelerCount() {
+	public Integer getTravelerCount() {
 		return this.travelerCount;
 	}
 
-	public void setTravelerCount(double travelerCount) {
+	public void setTravelerCount(Integer travelerCount) {
 		this.travelerCount = travelerCount;
 	}
 
-	public String getTripTypeId() {
-		return this.tripTypeId;
+	public String getTripType() {
+		return this.tripType;
 	}
 
-	public void setTripTypeId(String tripTypeId) {
-		this.tripTypeId = tripTypeId;
+	public void setTripType(String tripType) {
+		this.tripType = tripType;
 	}
 
 	public Integer getCustomerId() {
 		return this.customerId;
 	}
 
-	public void setCustomerId(int customerId) {
+	public void setCustomerId(Integer customerId) {
 		this.customerId = customerId;
 	}
 	
@@ -114,18 +114,8 @@ public class Booking implements Serializable {
 		return this.packageId;
 	}
 
-	public void setPackageId(int packageId) {
+	public void setPackageId(Integer packageId) {
 		this.packageId = packageId;
 	}
-	
-	/*
-	 * public Customer getCustomer() { return this.customer; }
-	 * 
-	 * public void setCustomer(Customer customer) { this.customer = customer; }
-	 * 
-	 * public Package getPackage() { return this.package; }
-	 * 
-	 * public void setPackage(Package package) { this.package = package; }
-	 */
 
 }

@@ -41,8 +41,8 @@ function modifyBooking(id)
         <% while(rs.next()){ %>
             <tr>
                 <td><%=rs.getInt("BookingId") %></td>
-                <td><%=rs.getInt("BookingNo") %></td>
-                <td><%=rs.getString("BookingDate") %></td>
+                <td><%=rs.getString("BookingNo") %></td>
+                <td><%=rs.getDate("BookingDate") %></td>
                 <td><%=rs.getInt("CustomerId") %></td>
                 <td><%=rs.getInt("TravelerCount") %></td>
                 <td><%=rs.getString("TripType") %></td>

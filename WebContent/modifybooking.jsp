@@ -7,71 +7,64 @@
 <title>Travel Experts - Agents - Modify Booking</title>
 <script src="jquery.js"></script>
 <script>
-function getBooking(id, myform){
-	$.ajax({
-		url:"http://localhost:8080/TravelExperts/rs/booking/getbooking/" + id,
-		data: data,
+function getBooking(id){
+	$.ajax({ url:"http://localhost:8080/TravelExperts/rs/booking/getbooking/" + id,
 		type:"GET",
-		contentType:"application/json",
-		dataType:"text",
-		complete: function(req, stat){ $("#result").html(stat); }
+		dataType:"json",
+		success: function(data){ handle(data); }
 	});
+}
+
+function handle(data){
+	$("#bookingId").val(data.bookingId);
+	var date = new Date(data.bookingDate);
+	$("#bookingDate").val(date.getFullYear() + '-' + ('0' + (date.getMonth()+1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2));
+	$("#bookingNo").val(data.bookingNo);
+	$("#travelerCount").val(data.travelerCount);
+	$("#customerId").val(data.customerId);
+	$("#tripType").val(data.tripType);
+	$("#packageId").val(data.packageId);
 	
-	var data = '{"bookingId":' + myform.packageId.value
-		+ ',"bookingDate":"' + myform.bookingDate.value
-		+ '","bookingNo":"' + myform.bookingNo.value
-		+ '","travelerCount":' + myform.travelerCount.value
-		+ ',"customerId":' + myform.customerId.value
-		+ ',"tripTypeId":"' + myform.tripTypeId.value
-		+ '","packageId":' + myform.packageId.value + '}';
-		
-		console.log("data:" + data);
 }
 
 function updateBooking(myform){
-	var data = '{"bookingId":' + myform.packageId.value
-		+ ',"bookingDate":"' + myform.bookingDate.value
+	var date = new Date(myform.bookingDate.value);
+	
+	var data = '{"bookingId":' + myform.bookingId.value
+		+ ',"bookingDate":"' + date.getFullYear() + '-' + ('0' + (date.getMonth()+1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2)
 		+ '","bookingNo":"' + myform.bookingNo.value
 		+ '","travelerCount":' + myform.travelerCount.value
 		+ ',"customerId":' + myform.customerId.value
-		+ ',"tripTypeId":"' + myform.tripTypeId.value
+		+ ',"tripType":"' + myform.tripType.value
 		+ '","packageId":' + myform.packageId.value + '}';
-		
-		console.log("data:" + data);
 
 	$.ajax({
 		url:"http://localhost:8080/TravelExperts/rs/booking/postbooking",
 		data: data,
 		type:"POST",
 		contentType:"application/json",
-		dataType:"text",
-		complete: function(req, stat){ $("#result").html(stat); }
-	});
+		dataType:"text" });
+	
+	window.location = 'http://localhost:8080/TravelExperts/bookings.jsp'
 }
 
 function deleteBooking(id){
-	$.ajax({
-		url:"http://localhost:8080/TravelExperts/rs/booking/deletebooking/" + id,
-		data: '{"bookingId":'+id+'}',
-		type:"DELETE",
-		contentType:"application/json",
-		dataType:"text",
-		complete: function(req, stat){ $("#result").html(stat); }
-	});
+	$.ajax({ url:"http://localhost:8080/TravelExperts/rs/booking/deletebooking/" + id, type:"DELETE" });
+	window.location = 'http://localhost:8080/TravelExperts/bookings.jsp'
 }
 </script>
 </head>
-<body>
-<% int id = Integer.parseInt(request.getParameter("BookingId")); %>
-	<form onload="getBooking(<%=id%>, this)">
-		Booking ID: <input type="number" name="bookingId" id="bookingId"/><br />
-		Booking No: <input type="text" name="bookingNo" /><br />
-		Booking Date: <input type="datetime-local" name="bookingDate" /><br />
-		Traveler Count: <input type="number" name="travelerCount" /><br />
-		Trip Type: <input type="text" name="tripTypeId" /><br />
-		Package ID: <input type="number" name="packageId" /><br />
+<body onload="getBooking(<%=request.getParameter("BookingId")%>)">
+	<form>
+		Booking ID: <input type="number" name="bookingId" id="bookingId" /><br />
+		Booking No: <input type="text" name="bookingNo" id="bookingNo" /><br />
+		Booking Date: <input type="date" name="bookingDate" id="bookingDate" /><br />
+		Customer ID: <input type="number" name="customerId" id="customerId"/><br />
+		Traveler Count: <input type="number" name="travelerCount" id="travelerCount" /><br />
+		Trip Type: <input type="text" name="tripType" id="tripType" /><br />
+		Package ID: <input type="number" name="packageId" id="packageId" /><br />
 		<button onclick="updateBooking(this.form)">Edit</button>
-		<button onclick="deleteBooking(<%=id%>)">Delete</button>
+		<button onclick="deleteBooking(<%=request.getParameter("BookingId")%>)">Delete</button>
 	</form>
 </body>
 </html>
