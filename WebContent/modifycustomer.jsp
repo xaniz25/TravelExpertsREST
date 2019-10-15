@@ -64,18 +64,51 @@ function deleteCustomer(id)
 	$.ajax({url:"http://localhost:8080/TravelExperts/rs/customer/deletecustomer/" + id,type:"DELETE"});
 	window.location = 'http://localhost:8080/TravelExperts/customers.jsp';
 }
+
+function loadprovinces(country){
+	var req = new XMLHttpRequest();
+	req.onreadystatechange = function(){
+		if (req.readyState == 4 && req.status == 200){
+			var provArray = JSON.parse(req.responseText);
+			var provSelect = document.getElementById("custProv");
+			clearSelect(provSelect); //clear dropdown before loading
+			for (i=0; i<provArray.length; i++){
+				var prov = provArray[i];
+				var option = document.createElement("option");
+				option.text = prov.provinceName;
+				option.value = prov.provinceCode;
+				provSelect.add(option); 
+			}
+		}
+	};
+	req.open("GET", "http://localhost:8080/TravelExperts/rs/province/getprovincesfromcountry/" + country);
+	req.send();
+}
+
+//clears the dropdown
+function clearSelect(selectObject){
+	while (selectObject.options.length > 0) {                
+        selectObject.remove(0);
+    }   
+}
 </script>
 </head>
 <body onload="getCustomer(<%=request.getParameter("CustomerId")%>)">
-	<form>
+	<form action="customers.jsp">
 		Customer ID: <input type="number" name="customerId" id="customerId"/><br />
-		First Name: <input type="text" name="custFirstName" id="customerFirstName" /><br />
+		First Name: <input type="text" name="custFirstName" id="custFirstName" /><br />
 		Last Name: <input type="text" name="custLastName" id="custLastName"/><br />
 		Address: <input type="text" name="custAddress" id="custAddress" /><br />
 		City: <input type="text" name="custCity" id="custCity"/><br />
-		Province: <input type="text" name="custProv" id="custProv" /><br />
+		Province: <select name="custProv" id="custProv">
+		<option value=''>Select One...</option>
+		</select><br />
 		Postal: <input type="text" name="custPostal" id="custPostal" /><br />
-		Country: <input type="text" name="custCountry" id="custCountry" /><br />
+		Country: <select name="custCountry" id="custCountry" onchange="loadprovinces(this.value)">
+			<option value=''>Select One...</option>
+			<option value='Canada'>Canada</option>
+			<option value='United States'>United States</option>
+			</select><br />
 		Phone: <input type="text" name="custPhone" id="custPhone" /><br />
 		Email: <input type="text" name="custEmail" id="custEmail" /><br />
 		User ID: <input type="text" name="custUserID" id= "custUserID" /><br />

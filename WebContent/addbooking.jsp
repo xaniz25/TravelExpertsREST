@@ -27,7 +27,7 @@
 </script>
 </head>
 <body>
-	<form>
+	<form action="bookings.jsp">
 		Customer ID: <input type="number" name="customerId" /><br />
 		Booking No: <input type="text" name="bookingNo" /><br />
 		Booking Date: <input type="date" name="bookingDate" /><br />
@@ -38,7 +38,7 @@
 			<option value="G">Group</option>
 		</select><br />
 		Package ID: <input type="number" name="packageId" /><br />
-		<button onclick="addBooking(this.form)">Send</button>
+		<button onclick="addBooking(this.form)">Add</button>
 	</form>
 	<p id="result"></p>
 </body>

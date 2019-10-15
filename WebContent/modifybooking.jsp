@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Travel Experts - Agents - Modify Booking</title>
+<title>Travel Experts - Modify Booking</title>
 <script src="jquery.js"></script>
 <script>
 function getBooking(id){
@@ -43,9 +43,9 @@ function updateBooking(myform){
 		data: data,
 		type:"POST",
 		contentType:"application/json",
-		dataType:"text" });
+		dataType:"text"
+	});
 	
-	window.location = 'http://localhost:8080/TravelExperts/bookings.jsp'
 }
 
 function deleteBooking(id){
@@ -55,7 +55,7 @@ function deleteBooking(id){
 </script>
 </head>
 <body onload="getBooking(<%=request.getParameter("BookingId")%>)">
-	<form>
+	<form action="bookings.jsp">
 		Booking ID: <input type="number" name="bookingId" id="bookingId" /><br />
 		Booking No: <input type="text" name="bookingNo" id="bookingNo" /><br />
 		Booking Date: <input type="date" name="bookingDate" id="bookingDate" /><br />

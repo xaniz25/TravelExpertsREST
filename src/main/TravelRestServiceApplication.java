@@ -14,6 +14,7 @@ public class TravelRestServiceApplication  extends Application {
 		singletons.add(new CustomerRestService());
 		singletons.add(new BookingRestService());
 		singletons.add(new PackageRestService());
+		singletons.add(new ProvinceRestService());
 	}
  
 	@Override

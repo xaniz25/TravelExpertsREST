@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Travel Experts - Agents - Modify Package</title>
+<title>Travel Experts - Modify Package</title>
 <script src="jquery.js"></script>
 <script>
 function getPackage(id){
@@ -57,7 +57,7 @@ function deletePackage(id){
 </script>
 </head>
 <body onload="getPackage(<%=request.getParameter("PackageId")%>)">
-	<form>
+	<form action="packages.jsp">
 		Package ID: <input type="text" name="packageId" id="packageId" /><br />
 		Package Name: <input type="text" name="pkgName" id="pkgName"/><br />
 		Description: <input type="text" name="pkgDesc" id="pkgDesc" /><br />
