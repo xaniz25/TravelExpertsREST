@@ -13,18 +13,15 @@
 			+ '","bookingNo":"' + myform.bookingNo.value
 			+ '","travelerCount":' + myform.travelerCount.value
 			+ ',"customerId":' + myform.customerId.value
-			+ ',"tripType":"' + myform.tripType.value
+			+ ',"tripTypeId":"' + myform.tripTypeId.value
 			+ '","packageId":' + myform.packageId.value + '}';
-			
-			console.log("data:" + data);
 
 		$.ajax({
 			url:"http://localhost:8080/TravelExperts/rs/booking/putbooking",
 			data: data,
 			type:"PUT",
 			contentType:"application/json",
-			dataType:"text",
-			complete: function(req, stat){ $("#result").html(stat); }
+			dataType:"text"
 		});
 	}
 </script>
@@ -35,7 +32,11 @@
 		Booking No: <input type="text" name="bookingNo" /><br />
 		Booking Date: <input type="date" name="bookingDate" /><br />
 		Traveler Count: <input type="number" name="travelerCount" /><br />
-		Trip Type: <input type="text" name="tripType" /><br />
+		Trip Type: <select name="tripTypeId">
+			<option value="L">Leisure</option>
+			<option value="B">Business</option>
+			<option value="G">Group</option>
+		</select><br />
 		Package ID: <input type="number" name="packageId" /><br />
 		<button onclick="addBooking(this.form)">Send</button>
 	</form>

@@ -45,7 +45,7 @@ function modifyBooking(id)
                 <td><%=rs.getDate("BookingDate") %></td>
                 <td><%=rs.getInt("CustomerId") %></td>
                 <td><%=rs.getInt("TravelerCount") %></td>
-                <td><%=rs.getString("TripType") %></td>
+                <td><%=rs.getString("TripTypeId") %></td>
                 <td><%=rs.getInt("PackageId") %></td>
                 <td><button id="<%=rs.getInt("BookingId") %>" onClick="modifyBooking(this.id)">Modify</button>
             </tr>

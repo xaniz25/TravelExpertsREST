@@ -22,7 +22,7 @@ function handle(data){
 	$("#bookingNo").val(data.bookingNo);
 	$("#travelerCount").val(data.travelerCount);
 	$("#customerId").val(data.customerId);
-	$("#tripType").val(data.tripType);
+	$("#tripTypeId").val(data.tripTypeId);
 	$("#packageId").val(data.packageId);
 	
 }
@@ -35,7 +35,7 @@ function updateBooking(myform){
 		+ '","bookingNo":"' + myform.bookingNo.value
 		+ '","travelerCount":' + myform.travelerCount.value
 		+ ',"customerId":' + myform.customerId.value
-		+ ',"tripType":"' + myform.tripType.value
+		+ ',"tripTypeId":"' + myform.tripTypeId.value
 		+ '","packageId":' + myform.packageId.value + '}';
 
 	$.ajax({
@@ -61,7 +61,11 @@ function deleteBooking(id){
 		Booking Date: <input type="date" name="bookingDate" id="bookingDate" /><br />
 		Customer ID: <input type="number" name="customerId" id="customerId"/><br />
 		Traveler Count: <input type="number" name="travelerCount" id="travelerCount" /><br />
-		Trip Type: <input type="text" name="tripType" id="tripType" /><br />
+		Trip Type: <select name="tripTypeId" id="tripTypeId">
+			<option value="L">Leisure</option>
+			<option value="B">Business</option>
+			<option value="G">Group</option>
+			</select><br />
 		Package ID: <input type="number" name="packageId" id="packageId" /><br />
 		<button onclick="updateBooking(this.form)">Edit</button>
 		<button onclick="deleteBooking(<%=request.getParameter("BookingId")%>)">Delete</button>
