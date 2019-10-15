@@ -10,14 +10,14 @@
 <title>Travel Experts - Packages</title>
 <script src = "jquery.js"></script>
 <script>
-function modifyPackage(id)
-{
-   window.location = 'http://localhost:8080/TravelExperts/modifypackage.jsp?PackageId=' + id;
-}
+
 </script>
 </head>
 <body>
+<h1>Our Packages</h1>
 <%
+request.getParameter("custUserId");
+
     try
     {
         Class.forName("org.mariadb.jdbc.Driver");
@@ -47,7 +47,7 @@ function modifyPackage(id)
                 <td><%=rs.getDate("PkgEndDate") %></td>
                 <td><%=rs.getDouble("PkgBasePrice") %></td>
                 <td><%=rs.getDouble("PkgAgencyCommission") %></td>
-                <td><button id="<%=rs.getInt("PackageId") %>" onClick="modifyPackage(this.id)">Modify</button>
+                <td><button id="<%=rs.getInt("PackageId") %>" onClick="modifyPackage(this.id)">Book this Package</button>
             </tr>
          <%}%>
            </tbody>
