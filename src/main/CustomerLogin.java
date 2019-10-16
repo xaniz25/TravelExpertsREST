@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import model.Customer;
 /**
  * Servlet implementation class CustomerLogin
  */
@@ -34,43 +36,43 @@ public class CustomerLogin extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String userid = request.getParameter("custUserId"); //get from form
 		String pwd = request.getParameter("custUserPwd");
-		int custid = 0;
 		HttpSession session = request.getSession();
+		Customer cust = new Customer();
 		
 		try {
-			custid = verifyLogin(userid, pwd);
-			System.out.print(custid);
-			if(custid > 0) {
-				session.setAttribute("customerId", custid);
-				response.sendRedirect("book.jsp");
+			cust = verifyLogin(userid, pwd);
+			if(cust.getCustomerId() > 0) {
+				session.setAttribute("customerId", cust.getCustomerId());
+				session.setAttribute("custFirstName", cust.getCustFirstName());
+				response.sendRedirect("customerwelcome.jsp?customerid="+cust.getCustomerId());
 			} else {
-				response.sendRedirect("customerlogin.jsp");
+				response.sendRedirect("customerlogin.jsp?login=invalid");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 	
-	private int verifyLogin(String userid, String pwd) throws Exception{
+	private Customer verifyLogin(String userid, String pwd) throws Exception{
 		Connection conn = null;
-		int custid = 0;
+		Customer cust = new Customer();
 		try {
 			Class.forName("org.mariadb.jdbc.Driver");
 			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/travelexperts", "root", ""); 
-			PreparedStatement preparedStatement = conn.prepareStatement("select customerId from Customers where custUserId=? and custUserPwd=? ");
+			PreparedStatement preparedStatement = conn.prepareStatement("select customerId, custFirstName from Customers where custUserId=? and custUserPwd=? ");
             preparedStatement.setString(1, userid);
             preparedStatement.setString(2, pwd);
             ResultSet rs = preparedStatement.executeQuery();
             rs.next();
-            custid = rs.getInt("customerId");
+            cust.setCustomerId(rs.getInt("customerId"));
+            cust.setCustFirstName(rs.getString("custFirstName"));
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
 		finally {
 			conn.close();
 		}
-		System.out.print(custid);
-		return custid;
+		return cust;
 	}
 
 }

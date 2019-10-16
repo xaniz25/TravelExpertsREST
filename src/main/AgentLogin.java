@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import model.Agent;
+
 /**
  * Servlet implementation class AgentLogin
  */
@@ -33,44 +35,41 @@ public class AgentLogin extends HttpServlet {
 		String userid = request.getParameter("agtUserId");
 		String pwd = request.getParameter("agtUserPwd");
 		HttpSession session = request.getSession();
-		boolean isValidLogon = false;
+		Agent agt = new Agent();
 		
 		try {
-			isValidLogon = verifyLogin(userid, pwd);
-			if(isValidLogon) {
-				session.setAttribute("agtUserId", userid);
+			agt = verifyLogin(userid, pwd);
+			if(agt.getAgentId() > 0) {
+				session.setAttribute("agentId", agt.getAgentId());
+				session.setAttribute("agtFirstName", agt.getAgtFirstName());
+				response.sendRedirect("agentwelcome.jsp?agentid="+agt.getAgentId());
+			} else {
+				response.sendRedirect("agentlogin.jsp?login=invalid");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		if(isValidLogon) {
-			response.sendRedirect("agentwelcome.jsp");
-		}
-		else {
-			response.sendRedirect("agentlogin.jsp");
-		}
 	}
 	
-	private boolean verifyLogin(String userid, String pwd) throws Exception{
+	private Agent verifyLogin(String userid, String pwd) throws Exception{
 		Connection conn = null;
-		boolean isValid = false;
+		Agent agt = new Agent();
 		try {
 			Class.forName("org.mariadb.jdbc.Driver");
 			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/travelexperts", "root", ""); 
-			PreparedStatement preparedStatement = conn.prepareStatement("select * from Agents where agtUserId=? and agtUserPwd=? ");
+			PreparedStatement preparedStatement = conn.prepareStatement("select agentId, agtFirstName from Agents where agtUserId=? and agtUserPwd=? ");
             preparedStatement.setString(1, userid);
             preparedStatement.setString(2, pwd);
             ResultSet rs = preparedStatement.executeQuery();
-            if(rs.next()) {
-            	isValid = true;
-            }
+            rs.next();
+            agt.setAgentId(rs.getInt("agentId"));
+            agt.setAgtFirstName(rs.getString("agtFirstName"));
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
 		finally {
 			conn.close();
 		}
-		return isValid;
+		return agt;
 	}
 }

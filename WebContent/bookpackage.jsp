@@ -8,44 +8,47 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Travel Experts - Packages</title>
+<script src = "jquery.js"></script>
 <script>
-function modifyBooking(id)
-{
-   window.location = 'http://localhost:8080/TravelExperts/modifybooking.jsp?BookingId=' + id;
+function bookPackage(pkgid){
+	window.location.replace('http://localhost:8080/TravelExperts/checkout.jsp?packageId='+pkgid);
 }
 </script>
 </head>
 <body>
-<a href="addbooking.jsp"><button>Add New Booking</button></a>
+<h1>Our Packages</h1>
 <%
+
     try
     {
         Class.forName("org.mariadb.jdbc.Driver");
         Connection con = (Connection) DriverManager.getConnection("jdbc:mariadb://localhost:3306/travelexperts","root","");
         Statement st = con.createStatement();
-        ResultSet rs = st.executeQuery("select * from Bookings;");
+        ResultSet rs = st.executeQuery("select * from Packages;");
 %>
 	<table>
       <thead>
           <tr>
-             <th>Booking ID</th>
-             <th>Booking Date</th>
-             <th>Customer ID</th>
-             <th>Traveler Count</th>
-             <th>Trip Type</th>
-             <th>Package Id</th>
+             <th>Package ID</th>
+             <th>Package Name</th>
+             <th>Description</th>
+             <th>Start Date</th>
+             <th>End Date</th>
+             <th>Base Price</th>
+             <th>Commission</th>
           </tr>
       </thead>
       <tbody>
         <% while(rs.next()){ %>
             <tr>
-                <td><%=rs.getInt("BookingId") %></td>
-                <td><%=rs.getDate("BookingDate") %></td>
-                <td><%=rs.getInt("CustomerId") %></td>
-                <td><%=rs.getInt("TravelerCount") %></td>
-                <td><%=rs.getString("TripTypeId") %></td>
                 <td><%=rs.getInt("PackageId") %></td>
-                <td><button id="<%=rs.getInt("BookingId") %>" onClick="modifyBooking(this.id)">Modify</button>
+                <td><%=rs.getString("PkgName") %></td>
+                <td><%=rs.getString("PkgDesc") %></td>
+                <td><%=rs.getDate("PkgStartDate") %></td>
+                <td><%=rs.getDate("PkgEndDate") %></td>
+                <td><%=rs.getDouble("PkgBasePrice") %></td>
+                <td><%=rs.getDouble("PkgAgencyCommission") %></td>
+                <td><button id="<%=rs.getInt("PackageId") %>" onClick="bookPackage(this.id)">Book this Package</button>
             </tr>
          <%}%>
            </tbody>

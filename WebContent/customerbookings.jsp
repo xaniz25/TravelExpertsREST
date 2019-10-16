@@ -1,3 +1,4 @@
+<%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.DriverManager"%>
@@ -8,54 +9,42 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Travel Experts - Packages</title>
-<script src = "jquery.js"></script>
-<script>
-function bookPackage(pkgid,custid){
-	console.log(pkgid + custid);
-	if(custid==""||custid==null){
-		alert("Please login");
-		window.location.replace('http://localhost:8080/TravelExperts/customerlogin.jsp');
-	}
-	else{
-		window.location.replace('http://localhost:8080/TravelExperts/addbooking.jsp?CustomerId='+custid+'?PackageId='+pkgid);
-	}
-}
-</script>
 </head>
 <body>
-<h1>Our Packages</h1>
+<a href="bookpackage.jsp"><button>Make new booking</button></a>
 <%
-
     try
     {
         Class.forName("org.mariadb.jdbc.Driver");
         Connection con = (Connection) DriverManager.getConnection("jdbc:mariadb://localhost:3306/travelexperts","root","");
         Statement st = con.createStatement();
-        ResultSet rs = st.executeQuery("select * from Packages;");
+        PreparedStatement preparedStatement = con.prepareStatement("select * from Bookings b inner join Packages p on b.packageId = p.packageId where customerId=?");
+        preparedStatement.setInt(1, (int)session.getAttribute("customerId"));
+        ResultSet rs = preparedStatement.executeQuery();
 %>
 	<table>
       <thead>
           <tr>
-             <th>Package ID</th>
-             <th>Package Name</th>
+             <th>Booking ID</th>
+             <th>Booking Date</th>
+             <th>Traveler Count</th>
+             <th>Trip Type</th>
+             <th>Package</th>
+             <th>Package</th>
              <th>Description</th>
-             <th>Start Date</th>
-             <th>End Date</th>
-             <th>Base Price</th>
-             <th>Commission</th>
+             <th>Price</th>
           </tr>
       </thead>
       <tbody>
         <% while(rs.next()){ %>
             <tr>
-                <td><%=rs.getInt("PackageId") %></td>
+                <td><%=rs.getInt("BookingId") %></td>
+                <td><%=rs.getDate("BookingDate") %></td>
+                <td><%=rs.getInt("TravelerCount") %></td>
+                <td><%=rs.getString("TripTypeId") %></td>
                 <td><%=rs.getString("PkgName") %></td>
                 <td><%=rs.getString("PkgDesc") %></td>
-                <td><%=rs.getDate("PkgStartDate") %></td>
-                <td><%=rs.getDate("PkgEndDate") %></td>
                 <td><%=rs.getDouble("PkgBasePrice") %></td>
-                <td><%=rs.getDouble("PkgAgencyCommission") %></td>
-                <td><button id="<%=rs.getInt("PackageId") %>" onClick="bookPackage(this.id, <%=session.getAttribute("customerId")%>)">Book this Package</button>
             </tr>
          <%}%>
            </tbody>

@@ -60,7 +60,7 @@ function clearSelect(selectObject){
 </script>
 </head>
 <body>
-	<form action="thankyou.jsp">
+	<form action="registerthankyou.jsp">
 		First Name: <input type="text" name="custFirstName" /><br />
 		Last Name: <input type="text" name="custLastName" /><br />
 		Address: <input type="text" name="custAddress" /><br />

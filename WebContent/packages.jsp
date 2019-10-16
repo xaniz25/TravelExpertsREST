@@ -17,6 +17,7 @@ function modifyPackage(id)
 </script>
 </head>
 <body>
+<a href="addpackage.jsp"><button>Add New Package</button></a>
 <%
     try
     {
