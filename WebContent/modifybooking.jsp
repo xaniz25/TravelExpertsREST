@@ -19,7 +19,6 @@ function handle(data){
 	$("#bookingId").val(data.bookingId);
 	var date = new Date(data.bookingDate);
 	$("#bookingDate").val(date.getFullYear() + '-' + ('0' + (date.getMonth()+1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2));
-	$("#bookingNo").val(data.bookingNo);
 	$("#travelerCount").val(data.travelerCount);
 	$("#customerId").val(data.customerId);
 	$("#tripTypeId").val(data.tripTypeId);
@@ -32,7 +31,6 @@ function updateBooking(myform){
 	
 	var data = '{"bookingId":' + myform.bookingId.value
 		+ ',"bookingDate":"' + date.getFullYear() + '-' + ('0' + (date.getMonth()+1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2)
-		+ '","bookingNo":"' + myform.bookingNo.value
 		+ '","travelerCount":' + myform.travelerCount.value
 		+ ',"customerId":' + myform.customerId.value
 		+ ',"tripTypeId":"' + myform.tripTypeId.value
@@ -57,7 +55,6 @@ function deleteBooking(id){
 <body onload="getBooking(<%=request.getParameter("BookingId")%>)">
 	<form action="bookings.jsp">
 		Booking ID: <input type="number" name="bookingId" id="bookingId" /><br />
-		Booking No: <input type="text" name="bookingNo" id="bookingNo" /><br />
 		Booking Date: <input type="date" name="bookingDate" id="bookingDate" /><br />
 		Customer ID: <input type="number" name="customerId" id="customerId"/><br />
 		Traveler Count: <input type="number" name="travelerCount" id="travelerCount" /><br />

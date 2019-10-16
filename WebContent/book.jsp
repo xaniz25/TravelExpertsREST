@@ -10,13 +10,21 @@
 <title>Travel Experts - Packages</title>
 <script src = "jquery.js"></script>
 <script>
-
+function bookPackage(pkgid,custid){
+	console.log(pkgid + custid);
+	if(custid==""||custid==null){
+		alert("Please login");
+		window.location.replace('http://localhost:8080/TravelExperts/customerlogin.jsp');
+	}
+	else{
+		window.location.replace('http://localhost:8080/TravelExperts/addbooking.jsp?CustomerId='+custid+'?PackageId='+pkgid);
+	}
+}
 </script>
 </head>
 <body>
 <h1>Our Packages</h1>
 <%
-request.getParameter("custUserId");
 
     try
     {
@@ -47,7 +55,7 @@ request.getParameter("custUserId");
                 <td><%=rs.getDate("PkgEndDate") %></td>
                 <td><%=rs.getDouble("PkgBasePrice") %></td>
                 <td><%=rs.getDouble("PkgAgencyCommission") %></td>
-                <td><button id="<%=rs.getInt("PackageId") %>" onClick="modifyPackage(this.id)">Book this Package</button>
+                <td><button id="<%=rs.getInt("PackageId") %>" onClick="bookPackage(this.id, <%=session.getAttribute("customerId")%>)">Book this Package</button>
             </tr>
          <%}%>
            </tbody>

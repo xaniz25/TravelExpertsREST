@@ -7,29 +7,27 @@
 <title>Travel Experts - Add Booking</title>
 <script src="jquery.js"></script>
 <script>
-	function addBooking(myform)
-	{
-		var data = '{"bookingDate":"' + myform.bookingDate.value
-			+ '","bookingNo":"' + myform.bookingNo.value
-			+ '","travelerCount":' + myform.travelerCount.value
-			+ ',"customerId":' + myform.customerId.value
-			+ ',"tripTypeId":"' + myform.tripTypeId.value
-			+ '","packageId":' + myform.packageId.value + '}';
+function addBooking(myform)
+{
+	var data = '{"bookingDate":"' + myform.bookingDate.value
+		+ '","travelerCount":' + myform.travelerCount.value
+		+ ',"customerId":' + myform.customerId.value
+		+ ',"tripTypeId":"' + myform.tripTypeId.value
+		+ '","packageId":' + myform.packageId.value + '}';
 
-		$.ajax({
-			url:"http://localhost:8080/TravelExperts/rs/booking/putbooking",
-			data: data,
-			type:"PUT",
-			contentType:"application/json",
-			dataType:"text"
-		});
-	}
+	$.ajax({
+		url:"http://localhost:8080/TravelExperts/rs/booking/putbooking",
+		data: data,
+		type:"PUT",
+		contentType:"application/json",
+		dataType:"text"
+	});
+}
 </script>
 </head>
 <body>
 	<form action="bookings.jsp">
 		Customer ID: <input type="number" name="customerId" /><br />
-		Booking No: <input type="text" name="bookingNo" /><br />
 		Booking Date: <input type="date" name="bookingDate" /><br />
 		Traveler Count: <input type="number" name="travelerCount" /><br />
 		Trip Type: <select name="tripTypeId">

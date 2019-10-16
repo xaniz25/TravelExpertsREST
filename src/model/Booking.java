@@ -20,8 +20,6 @@ public class Booking implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date bookingDate;
 
-	private String bookingNo;
-
 	private Integer travelerCount;
 
 	private String tripTypeId;
@@ -30,31 +28,15 @@ public class Booking implements Serializable {
 	
 	private Integer packageId;
 
-	/*
-	 * //bi-directional many-to-one association to Customer
-	 * 
-	 * @ManyToOne
-	 * 
-	 * @JoinColumn(name="CustomerId") private Customer customer;
-	 *
-	 * /* //bi-directional many-to-one association to Package
-	 * 
-	 * @ManyToOne
-	 * 
-	 * @JoinColumn(name="PackageId") private Package package;
-	 * 
-	 */
-
 	public Booking() {
 	}
 
 	
-	public Booking(int bookingId, Date bookingDate, String bookingNo, Integer travelerCount, Integer customerId,
+	public Booking(int bookingId, Date bookingDate, Integer travelerCount, Integer customerId,
 			String tripTypeId, Integer packageId) {
 		super();
 		this.bookingId = bookingId;
 		this.bookingDate = bookingDate;
-		this.bookingNo = bookingNo;
 		this.travelerCount = travelerCount;
 		this.customerId = customerId;
 		this.tripTypeId = tripTypeId;
@@ -76,14 +58,6 @@ public class Booking implements Serializable {
 
 	public void setBookingDate(Date bookingDate) {
 		this.bookingDate = bookingDate;
-	}
-
-	public String getBookingNo() {
-		return this.bookingNo;
-	}
-
-	public void setBookingNo(String bookingNo) {
-		this.bookingNo = bookingNo;
 	}
 
 	public Integer getTravelerCount() {

@@ -1,14 +1,11 @@
 package main;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,9 +13,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import model.Customer;
-
 /**
  * Servlet implementation class CustomerLogin
  */
@@ -38,48 +32,45 @@ public class CustomerLogin extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String userid = request.getParameter("custUserId");
+		String userid = request.getParameter("custUserId"); //get from form
 		String pwd = request.getParameter("custUserPwd");
+		int custid = 0;
 		HttpSession session = request.getSession();
-		boolean isValidLogon = false;
 		
 		try {
-			isValidLogon = verifyLogin(userid, pwd);
-			if(isValidLogon) {
-				session.setAttribute("custUserId", userid);
+			custid = verifyLogin(userid, pwd);
+			System.out.print(custid);
+			if(custid > 0) {
+				session.setAttribute("customerId", custid);
+				response.sendRedirect("book.jsp");
+			} else {
+				response.sendRedirect("customerlogin.jsp");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		if(isValidLogon) {
-			response.sendRedirect("customerwelcome.jsp");
-		}
-		else {
-			response.sendRedirect("customerlogin.jsp");
-		}
 	}
 	
-	private boolean verifyLogin(String userid, String pwd) throws Exception{
+	private int verifyLogin(String userid, String pwd) throws Exception{
 		Connection conn = null;
-		boolean isValid = false;
+		int custid = 0;
 		try {
 			Class.forName("org.mariadb.jdbc.Driver");
 			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/travelexperts", "root", ""); 
-			PreparedStatement preparedStatement = conn.prepareStatement("select * from Customers where custUserId=? and custUserPwd=? ");
+			PreparedStatement preparedStatement = conn.prepareStatement("select customerId from Customers where custUserId=? and custUserPwd=? ");
             preparedStatement.setString(1, userid);
             preparedStatement.setString(2, pwd);
             ResultSet rs = preparedStatement.executeQuery();
-            if(rs.next()) {
-            	isValid = true;
-            }
+            rs.next();
+            custid = rs.getInt("customerId");
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
 		finally {
 			conn.close();
 		}
-		return isValid;
+		System.out.print(custid);
+		return custid;
 	}
 
 }
