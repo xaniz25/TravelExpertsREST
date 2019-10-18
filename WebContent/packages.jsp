@@ -19,12 +19,16 @@ function modifyPackage(id)
 <body>
 <a href="addpackage.jsp"><button>Add New Package</button></a>
 <%
-    try
-    {
-        Class.forName("org.mariadb.jdbc.Driver");
-        Connection con = (Connection) DriverManager.getConnection("jdbc:mariadb://localhost:3306/travelexperts","root","");
-        Statement st = con.createStatement();
-        ResultSet rs = st.executeQuery("select * from Packages;");
+if(session.getAttribute("agentId")==null){
+out.print("<h1>Please login</h1>");
+response.sendRedirect("agentlogin.jsp");
+}else{
+	
+	try{
+	    Class.forName("org.mariadb.jdbc.Driver");
+	    Connection con = (Connection) DriverManager.getConnection("jdbc:mariadb://localhost:3306/travelexperts","root","");
+	    Statement st = con.createStatement();
+  		ResultSet rs = st.executeQuery("select * from Packages;");
 %>
 	<table>
       <thead>
@@ -60,6 +64,7 @@ function modifyPackage(id)
     catch(Exception e){
         out.print(e.getMessage());%><br><%
     }
-    %>
+	
+}%>
 </body>
 </html>

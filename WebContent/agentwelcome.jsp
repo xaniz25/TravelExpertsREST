@@ -7,12 +7,11 @@
 <title>Travel Experts - Agent Dashboard</title>
 </head>
 <body>
-<% if(session.getAttribute("customerId")==null){
+<% if(session.getAttribute("agentId")==null){
 out.print("<h1>Please login</h1>");
 response.sendRedirect("agentlogin.jsp");
 }else{
 %>
-
 <h1>Welcome, <%=session.getAttribute("agtFirstName") %>!</h1>
 <a href="bookings.jsp">Bookings</a>
 <a href="packages.jsp">Packages</a>

@@ -53,7 +53,7 @@ function deleteBooking(id){
 </script>
 </head>
 <body onload="getBooking(<%=request.getParameter("BookingId")%>)">
-	<form action="bookings.jsp">
+	<form action="bookings.jsp?reload">
 		Booking ID: <input type="number" name="bookingId" id="bookingId" /><br />
 		Booking Date: <input type="date" name="bookingDate" id="bookingDate" /><br />
 		Customer ID: <input type="number" name="customerId" id="customerId"/><br />

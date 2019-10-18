@@ -12,7 +12,6 @@ out.print("<h1>Please login</h1>");
 response.sendRedirect("customerlogin.jsp");
 }else{
 %>
-
 <h1>Welcome, <%=session.getAttribute("custFirstName") %>!</h1>
 <a href="customerbookings.jsp">Your Bookings</a>
 <a href="customerinfo.jsp">Your Account</a>

@@ -20,14 +20,13 @@ function addCustomer(myform)
 		+ '","custProv":"' + myform.custProv.value
 		+ '","custUserID":"' + myform.custUserID.value
 		+ '","custUserPwd":"' + myform.custUserPwd.value + '"}';
-
+		
 	$.ajax({
 		url:"http://localhost:8080/TravelExperts/rs/customer/putcustomer",
 		data: data,
 		type:"PUT",
 		contentType:"application/json",
-		dataType:"text",
-		complete: function(req, stat){ $("#result").html(stat); }
+		dataType:"text"
 	});
 }
 

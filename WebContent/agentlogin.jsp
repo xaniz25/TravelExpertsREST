@@ -7,10 +7,15 @@
 <title>Insert title here</title>
 </head>
 <body>
+<% if(session.getAttribute("agentId")!=null){
+response.sendRedirect("agentwelcome.jsp");
+}else{
+%>
 	<form action="AgentLogin" method="post">
 		UserID:<input type="text" name="agtUserId"/><br/>
 		Password: <input type="text" name="agtUserPwd"/><br/>
 		<button>Login</button>
 	</form>
+<% } %> <%--else--%>
 </body>
 </html>

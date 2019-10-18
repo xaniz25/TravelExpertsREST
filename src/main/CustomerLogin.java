@@ -5,7 +5,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,8 +12,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import model.Customer;
 /**
  * Servlet implementation class CustomerLogin
  */
@@ -34,28 +31,11 @@ public class CustomerLogin extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String userid = request.getParameter("custUserId"); //get from form
+		String userid = request.getParameter("custUserId");
 		String pwd = request.getParameter("custUserPwd");
 		HttpSession session = request.getSession();
-		Customer cust = new Customer();
-		
-		try {
-			cust = verifyLogin(userid, pwd);
-			if(cust.getCustomerId() > 0) {
-				session.setAttribute("customerId", cust.getCustomerId());
-				session.setAttribute("custFirstName", cust.getCustFirstName());
-				response.sendRedirect("customerwelcome.jsp?customerid="+cust.getCustomerId());
-			} else {
-				response.sendRedirect("customerlogin.jsp?login=invalid");
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-	
-	private Customer verifyLogin(String userid, String pwd) throws Exception{
 		Connection conn = null;
-		Customer cust = new Customer();
+		
 		try {
 			Class.forName("org.mariadb.jdbc.Driver");
 			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/travelexperts", "root", ""); 
@@ -63,16 +43,18 @@ public class CustomerLogin extends HttpServlet {
             preparedStatement.setString(1, userid);
             preparedStatement.setString(2, pwd);
             ResultSet rs = preparedStatement.executeQuery();
-            rs.next();
-            cust.setCustomerId(rs.getInt("customerId"));
-            cust.setCustFirstName(rs.getString("custFirstName"));
-		} catch (ClassNotFoundException | SQLException e) {
+	            if(rs.next()) {
+	            int custid = rs.getInt("customerId");
+	            session.setAttribute("customerId", custid);
+	            String fname = rs.getString("custFirstName");
+	            session.setAttribute("custFirstName", fname);
+	            response.sendRedirect("customerwelcome.jsp?welcome="+fname);
+				} else {
+					response.sendRedirect("customerlogin.jsp?login=invalid");
+				}
+	            conn.close();
+			} catch (Exception e) {
 			e.printStackTrace();
-		}
-		finally {
-			conn.close();
-		}
-		return cust;
+			}
+    }
 	}
-
-}

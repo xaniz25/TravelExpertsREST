@@ -5,7 +5,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,8 +12,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import model.Agent;
 
 /**
  * Servlet implementation class AgentLogin
@@ -35,25 +32,8 @@ public class AgentLogin extends HttpServlet {
 		String userid = request.getParameter("agtUserId");
 		String pwd = request.getParameter("agtUserPwd");
 		HttpSession session = request.getSession();
-		Agent agt = new Agent();
-		
-		try {
-			agt = verifyLogin(userid, pwd);
-			if(agt.getAgentId() > 0) {
-				session.setAttribute("agentId", agt.getAgentId());
-				session.setAttribute("agtFirstName", agt.getAgtFirstName());
-				response.sendRedirect("agentwelcome.jsp?agentid="+agt.getAgentId());
-			} else {
-				response.sendRedirect("agentlogin.jsp?login=invalid");
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-	
-	private Agent verifyLogin(String userid, String pwd) throws Exception{
 		Connection conn = null;
-		Agent agt = new Agent();
+		
 		try {
 			Class.forName("org.mariadb.jdbc.Driver");
 			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/travelexperts", "root", ""); 
@@ -61,15 +41,18 @@ public class AgentLogin extends HttpServlet {
             preparedStatement.setString(1, userid);
             preparedStatement.setString(2, pwd);
             ResultSet rs = preparedStatement.executeQuery();
-            rs.next();
-            agt.setAgentId(rs.getInt("agentId"));
-            agt.setAgtFirstName(rs.getString("agtFirstName"));
-		} catch (ClassNotFoundException | SQLException e) {
+	            if(rs.next()) {
+	            int agtid = rs.getInt("agentId");
+	            session.setAttribute("agentId", agtid);
+	            String fname = rs.getString("agtFirstName");
+	            session.setAttribute("agtFirstName", fname);
+	            response.sendRedirect("agentwelcome.jsp?welcome="+fname);
+				} else {
+					response.sendRedirect("agentlogin.jsp?login=invalid");
+				}
+	            conn.close();
+			} catch (Exception e) {
 			e.printStackTrace();
-		}
-		finally {
-			conn.close();
-		}
-		return agt;
-	}
+			}
+    }
 }

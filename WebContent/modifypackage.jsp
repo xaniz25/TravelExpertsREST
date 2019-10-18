@@ -57,7 +57,7 @@ function deletePackage(id){
 </script>
 </head>
 <body onload="getPackage(<%=request.getParameter("PackageId")%>)">
-	<form action="packages.jsp">
+	<form action="packages.jsp?reload">
 		Package ID: <input type="text" name="packageId" id="packageId" /><br />
 		Package Name: <input type="text" name="pkgName" id="pkgName"/><br />
 		Description: <input type="text" name="pkgDesc" id="pkgDesc" /><br />

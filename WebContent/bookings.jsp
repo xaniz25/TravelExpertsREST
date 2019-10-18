@@ -17,13 +17,16 @@ function modifyBooking(id)
 </head>
 <body>
 <a href="addbooking.jsp"><button>Add New Booking</button></a>
-<%
-    try
-    {
-        Class.forName("org.mariadb.jdbc.Driver");
-        Connection con = (Connection) DriverManager.getConnection("jdbc:mariadb://localhost:3306/travelexperts","root","");
-        Statement st = con.createStatement();
-        ResultSet rs = st.executeQuery("select * from Bookings;");
+<% if(session.getAttribute("agentId")==null){
+out.print("<h1>Please login</h1>");
+response.sendRedirect("agentlogin.jsp");
+}else{
+
+	try{
+	    Class.forName("org.mariadb.jdbc.Driver");
+	    Connection con = (Connection) DriverManager.getConnection("jdbc:mariadb://localhost:3306/travelexperts","root","");
+	    Statement st = con.createStatement();
+	    ResultSet rs = st.executeQuery("select * from Bookings;");
 %>
 	<table>
       <thead>
@@ -57,6 +60,7 @@ function modifyBooking(id)
     catch(Exception e){
         out.print(e.getMessage());%><br><%
     }
+}
     %>
 </body>
 </html>
