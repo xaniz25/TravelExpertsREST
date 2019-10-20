@@ -9,26 +9,27 @@ import javax.persistence.*;
  * 
  */
 @Entity
+@Table(name="provinces")
 @NamedQuery(name="Province.findAll", query="SELECT p FROM Province p")
 public class Province implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private String provinceCode;
+	private String provCode;
 
 	private String country;
 
-	private String provinceName;
+	private String provName;
 
 	public Province() {
 	}
 
-	public String getProvinceCode() {
-		return this.provinceCode;
+	public String getProvCode() {
+		return this.provCode;
 	}
 
-	public void setProvinceCode(String provinceCode) {
-		this.provinceCode = provinceCode;
+	public void setProvCode(String provCode) {
+		this.provCode = provCode;
 	}
 
 	public String getCountry() {
@@ -39,12 +40,12 @@ public class Province implements Serializable {
 		this.country = country;
 	}
 
-	public String getProvinceName() {
-		return this.provinceName;
+	public String getProvName() {
+		return this.provName;
 	}
 
-	public void setProvinceName(String provinceName) {
-		this.provinceName = provinceName;
+	public void setProvName(String provName) {
+		this.provName = provName;
 	}
 
 }

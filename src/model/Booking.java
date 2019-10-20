@@ -22,7 +22,7 @@ public class Booking implements Serializable {
 
 	private Integer travelerCount;
 
-	private String tripTypeId;
+	private String tripType;
 
 	private Integer customerId;
 	
@@ -33,13 +33,13 @@ public class Booking implements Serializable {
 
 	
 	public Booking(int bookingId, Date bookingDate, Integer travelerCount, Integer customerId,
-			String tripTypeId, Integer packageId) {
+			String tripType, Integer packageId) {
 		super();
 		this.bookingId = bookingId;
 		this.bookingDate = bookingDate;
 		this.travelerCount = travelerCount;
 		this.customerId = customerId;
-		this.tripTypeId = tripTypeId;
+		this.tripType = tripType;
 		this.packageId = packageId;
 	}
 
@@ -69,11 +69,11 @@ public class Booking implements Serializable {
 	}
 
 	public String getTripType() {
-		return this.tripTypeId;
+		return this.tripType;
 	}
 
 	public void setTripType(String tripType) {
-		this.tripTypeId = tripType;
+		this.tripType = tripType;
 	}
 
 	public Integer getCustomerId() {

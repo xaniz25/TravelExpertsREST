@@ -1,12 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<%@ include file="head.jsp"%>
+<title>Travel Experts - Logged Out</title>
 </head>
 <body>
+<%@ include file="nav.jsp"%>
 <%
 session.invalidate();
 response.sendRedirect("http://localhost:8080/TravelExperts/index.jsp");

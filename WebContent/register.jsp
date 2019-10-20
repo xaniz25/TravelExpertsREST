@@ -1,84 +1,61 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Travel Experts - Register Customer</title>
-<script src="jquery.js"></script>
-<script>
-function addCustomer(myform)
-{
-	var data = '{"custAddress":"' + myform.custAddress.value
-		+ '","custPhone":"' + myform.custPhone.value
-		+ '","custCity":"' + myform.custCity.value
-		+ '","custCountry":"' + myform.custCountry.value
-		+ '","custEmail":"' + myform.custEmail.value
-		+ '","custFirstName":"' + myform.custFirstName.value
-		+ '","custLastName":"' + myform.custLastName.value
-		+ '","custPostal":"' + myform.custPostal.value
-		+ '","custProv":"' + myform.custProv.value
-		+ '","custUserID":"' + myform.custUserID.value
-		+ '","custUserPwd":"' + myform.custUserPwd.value + '"}';
-		
-	$.ajax({
-		url:"http://localhost:8080/TravelExperts/rs/customer/putcustomer",
-		data: data,
-		type:"PUT",
-		contentType:"application/json",
-		dataType:"text"
-	});
-}
-
-function loadprovinces(country){
-	var req = new XMLHttpRequest();
-	req.onreadystatechange = function(){
-		if (req.readyState == 4 && req.status == 200){
-			var provArray = JSON.parse(req.responseText);
-			var provSelect = document.getElementById("custProv");
-			clearSelect(provSelect); //clear dropdown before loading
-			for (i=0; i<provArray.length; i++){
-				var prov = provArray[i];
-				var option = document.createElement("option");
-				option.text = prov.provinceName;
-				option.value = prov.provinceCode;
-				provSelect.add(option); 
-			}
-		}
-	};
-	req.open("GET", "http://localhost:8080/TravelExperts/rs/province/getprovincesfromcountry/" + country);
-	req.send();
-}
-
-//clears the dropdown
-function clearSelect(selectObject){
-	while (selectObject.options.length > 0) {                
-        selectObject.remove(0);
-    }   
-}
-</script>
+<%@ include file="head.jsp" %>
+  <title>Travel Experts - Register</title>
 </head>
 <body>
-	<form action="registerthankyou.jsp">
-		First Name: <input type="text" name="custFirstName" /><br />
-		Last Name: <input type="text" name="custLastName" /><br />
-		Address: <input type="text" name="custAddress" /><br />
-		City: <input type="text" name="custCity" /><br />
-		Province: <select name="custProv" id="custProv">
-		<option value=''>Select One...</option>
-		</select><br />
-		Postal: <input type="text" name="custPostal" /><br />
-		Country: <select name="custCountry" onchange="loadprovinces(this.value)">
-			<option value=''>Select One...</option>
-			<option value='Canada'>Canada</option>
-			<option value='United States'>United States</option>
-			</select><br />
-		Phone: <input type="text" name="custPhone" /><br />
-		Email: <input type="text" name="custEmail" /><br />
-		User ID: <input type="text" name="custUserID" /><br />
-		Password: <input type="password" name="custUserPwd" /><br />
-		Confirm Password: <input type="password" /><br />
-		<button onclick="addCustomer(this.form)">Register</button>
-	</form>
+<%@ include file="nav.jsp" %>
+<div class="contain">
+   <!--Registration Form-->
+    <div id="formbg"><p>Register below:</p>
+		<p id="registerError" style="font-size: 18px; visibility: hidden; color: red">Please complete form and check format!</p>
+		<form action="registerthankyou.jsp" onSubmit="return validateForm()">
+			<table>
+				<tr><td>First Name:</td>
+					<td><input type="text" name="custFirstName" id="custFirstName"/></td>
+				</tr>
+				<tr><td>Last Name:</td>
+					<td><input type="text" name="custLastName" id="custLastName" /></td>
+				</tr>
+				<tr><td>Address:</td>
+					<td><input type="text" name="custAddress" id="custAddress" /></td>
+				</tr>
+				<tr><td>City:</td>
+					<td><input type="text" name="custCity" id="custCity" /></td>
+				</tr>	
+				<tr><td>Province:</td>
+					<td><select name="custProv" id="custProv">
+						<option value=''>Select One...</option>
+						</select><br /></td>
+				</tr>
+				<tr><td>Postal:</td>
+					<td><input type="text" name="custPostal" id="custPostal" /></td>
+				</tr>
+				<tr><td>Country:</td>
+					<td><select name="custCountry" onchange="loadprovinces(this.value)">
+						<option value=''>Select One...</option>
+						<option value='Canada'>Canada</option>
+						<option value='United States'>United States</option>
+						</select></td>
+				</tr>
+				<tr><td>Phone:</td>
+					<td><input type="text" name="custPhone" /></td>
+				</tr>
+				<tr><td>Email:</td>
+					<td><input type="text" name="custEmail" /></td>
+				</tr>
+				<tr><td>User ID:</td>
+					<td><input type="text" name="custUserID" /></td>
+				</tr>
+				<tr><td>Password:</td>
+					<td><input type="password" name="custUserPwd" /></td>
+				</tr>
+				<tr><td>Confirm Password:</td>
+					<td><input type="password" /></td>
+				</tr>
+			</table>
+			<button onClick="return resetForm()" type="reset" value="reset">Clear</button>
+			<button onclick="addCustomer(this.form)">Register</button>
+		</form>
+	</div>
+	</div>
 </body>
 </html>

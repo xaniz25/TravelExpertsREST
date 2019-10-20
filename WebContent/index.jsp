@@ -1,14 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<%@ include file="head.jsp" %>
+  <title>Travel Experts - Home</title>
 </head>
 <body>
-<a href = "customerlogin.jsp">Customer Login</a>
-<a href = "agentlogin.jsp">Agent Login</a>
-Welcome!
+<%@ include file="nav.jsp"%>
+	<div id="home">
+		<img src="images/logo2.png"/><br/>
+		<a href="bookpackage.jsp"><button>View Our Packages></button></a>
+	</div>
 </body>
 </html>

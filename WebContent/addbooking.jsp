@@ -1,43 +1,22 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Travel Experts - Add Booking</title>
-<script src="jquery.js"></script>
-<script>
-function addBooking(myform)
-{
-	var data = '{"bookingDate":"' + myform.bookingDate.value
-		+ '","travelerCount":' + myform.travelerCount.value
-		+ ',"customerId":' + myform.customerId.value
-		+ ',"tripTypeId":"' + myform.tripTypeId.value
-		+ '","packageId":' + myform.packageId.value + '}';
-
-	$.ajax({
-		url:"http://localhost:8080/TravelExperts/rs/booking/putbooking",
-		data: data,
-		type:"PUT",
-		contentType:"application/json",
-		dataType:"text"
-	});
-}
-</script>
+<%@ include file="head.jsp" %>
+  <title>Travel Experts Agents - Add Booking</title>
 </head>
 <body>
-	<form action="bookings.jsp">
-		Customer ID: <input type="number" name="customerId" /><br />
-		Booking Date: <input type="date" name="bookingDate" /><br />
-		Traveler Count: <input type="number" name="travelerCount" /><br />
-		Trip Type: <select name="tripTypeId">
-			<option value="L">Leisure</option>
-			<option value="B">Business</option>
-			<option value="G">Group</option>
-		</select><br />
-		Package ID: <input type="number" name="packageId" /><br />
-		<button onclick="addBooking(this.form)">Add</button>
-	</form>
-	<p id="result"></p>
+<%@ include file="nav.jsp"%>
+	<div class="contain">
+   		<div id="formbg">
+			<form action="bookings.jsp">
+				Customer ID: <input type="number" name="customerId" /><br />
+				Traveler Count: <input type="number" name="travelerCount" /><br />
+				Trip Type: <select name="tripType">
+					<option value="Leisure">Leisure</option>
+					<option value="Business">Business</option>
+					<option value="Group">Group</option>
+				</select><br />
+				Package ID: <input type="number" name="packageId" /><br />
+				<button onclick="addBooking(this.form)">Add</button>
+			</form>
+		</div>
+	</div>
 </body>
 </html>

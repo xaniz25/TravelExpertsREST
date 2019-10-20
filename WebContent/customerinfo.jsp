@@ -1,0 +1,63 @@
+<%@ include file="head.jsp" %>
+  <title>Travel Experts Agents - Your Account</title>
+</head>
+<body onload="getCustomer(<%=session.getAttribute("customerId")%>); loadprovinces(this.value);">
+<%@ include file="nav.jsp"%>
+<% if(session.getAttribute("customerId")==null){
+out.print("<h1>Please login</h1>");
+response.sendRedirect("customerlogin.jsp");
+}else{
+%>
+	<div class="contain">
+		<div id="formbg">
+			<p>Your Account Information</p>
+			<form action="accountupdated.jsp">
+				<table>
+				<tr><td>First Name:</td>
+					<td><input type="text" name="custFirstName" id="custFirstName"/></td>
+				</tr>
+				<tr><td>Last Name:</td>
+					<td><input type="text" name="custLastName" id="custLastName" /></td>
+				</tr>
+				<tr><td>Address:</td>
+					<td><input type="text" name="custAddress" id="custAddress" /></td>
+				</tr>
+				<tr><td>City:</td>
+					<td><input type="text" name="custCity" id="custCity" /></td>
+				</tr>	
+				<tr><td>Province:</td>
+					<td><input type="text" name="custProv" id="custProv" /></td>
+				</tr>
+				<tr><td>Postal:</td>
+					<td><input type="text" name="custPostal" id="custPostal" /></td>
+				</tr>
+				<tr><td>Country:</td>
+					<td><select name="custCountry" onchange="loadprovinces(this.value)">
+						<option value='Canada'>Canada</option>
+						<option value='United States'>United States</option>
+						</select></td>
+				</tr>
+				<tr><td>Phone:</td>
+					<td><input type="text" name="custPhone" id="custPhone" /></td>
+				</tr>
+				<tr><td>Email:</td>
+					<td><input type="text" name="custEmail" id="custEmail"/></td>
+				</tr>
+				<tr><td>User ID:</td>
+					<td><input type="text" name="custUserID" id="custUserID"/></td>
+				</tr>
+				<tr><td>Change Password:</td>
+					<td><input type="password" name="custUserPwd" id="custUserPwd" /></td>
+				</tr>
+				<tr><td>Confirm Password:</td>
+					<td><input type="password" /></td>
+				</tr>
+				</table>
+				<button onclick="updateAccount(<%=session.getAttribute("customerId")%>, this.form)">Edit</button>
+				<button onclick="deleteAccount(<%=session.getAttribute("customerId")%>)">Delete Your Account</button>
+			</form>
+<% } %> <%--else--%>
+		</div>
+	</div>
+</body>
+</html>
