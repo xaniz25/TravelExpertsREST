@@ -3,9 +3,41 @@
 </head>
 <body>
 <%@ include file="nav.jsp"%>
-	<div id="home">
-		<img src="images/logo2.png"/><br/>
-		<a href="bookpackage.jsp"><button id="book">View Our Packages</button></a>
+	<div class="contain">
+		<div id="home" class="animated fadeIn slow">
+			<h1>Let us take you to a</br>new adventure</h1>
+			<a href="#packages"><button id="book" class="animated fadeInUpBig slow">View Our Packages</button></a>
+		</div>
 	</div>
-</body>
-</html>
+	<div class="contain">
+		<div id="packages">
+			<h1>Our Packages</h1>
+				<ul>
+		<% try {
+	        Class.forName("org.mariadb.jdbc.Driver");
+	        Connection con = (Connection) DriverManager.getConnection("jdbc:mariadb://localhost:3306/travelexperts","root","");
+	        Statement st = con.createStatement();
+	        ResultSet rs = st.executeQuery("select * from Packages;");
+			while(rs.next()){ %>
+				<li class="eachpackage">
+					<img src ="images/<%=rs.getString("PkgImg")%>" >
+					<table>
+	                	<tr><td><h6><%=rs.getString("PkgName") %></h6></td></tr>
+	                	<tr><td><%=rs.getString("PkgDesc") %></td></tr>
+	                	<tr><td><%=rs.getDate("PkgStartDate") %> to <%=rs.getDate("PkgEndDate") %></td></tr>
+	                	<tr><td>Price: $<%=rs.getDouble("PkgBasePrice") %></td></tr>
+	               		<tr><td><button id="<%=rs.getInt("PackageId") %>" onClick="bookPackage(this.id)">Book this Package</button></td></tr>
+	    			</table>
+		    <%}
+		    st.close();
+		    con.close();
+		    }
+		    catch(Exception e){
+		        out.print(e.getMessage());%><br><%
+		    }
+		    %>
+	   				</li>
+	    		</ul>
+	   		</div>
+	   	</div>
+<%@ include file="foot.jsp" %>

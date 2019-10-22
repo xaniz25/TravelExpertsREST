@@ -3,7 +3,7 @@
 </head>
 <body>
 <%@ include file="nav.jsp" %>
-<div class="contain">
+<div class="contain-reg">
    <!--Registration Form-->
     <div id="formbg"><p id="reg">Register below</p>
 		<p id="registerError" style="font-size: 18px; visibility: hidden; color: red">Please complete form and check format!</p>
@@ -57,5 +57,4 @@
 		</form>
 	</div>
 	</div>
-</body>
-</html>
+<%@ include file="foot.jsp" %>

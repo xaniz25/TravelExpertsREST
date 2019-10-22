@@ -22,7 +22,7 @@ body {
 
 .contain {
   text-align: center;
-  min-height: 100vh;
+  height: auto;
   margin-top: 85px;
   padding-top: 1px;
   margin-bottom:0;
@@ -41,18 +41,12 @@ a:hover{
 
  /*header for logo, title and navigation bar*/
  header {
-   height: 100px;
+   height: 85px;
    width: 100%;
    position: fixed;
    top: 0;
    background: white;}
 
-/*decrease header for bigger screen sizes*/
-@media (min-width: 1081px) {
-  header {
-    height: 85px;
-  }
- }
 
 /*website logo*/
  header img {
@@ -64,9 +58,10 @@ a:hover{
 /*page background*/
  .contain {
    text-align: center;
-   min-height: 100vh;
+   height: 90vh;
    margin-top: 85px;
    padding-top: 1px;
+   padding-bottom: 150px;
    margin-bottom:0;
    }
 
@@ -102,30 +97,32 @@ a:hover{
 	font-size: 24px; !important;
 }
 
-/*hide navigation bar for smaller screens*/
+/*hide navigation and login bar for smaller screens*/
 @media (max-width: 1080px) {
   .nav {
+    display: none;}
+  #loginbar {
     display: none;}
 }
 
 /*show navigation menu button for smaller screens*/
 #navbtn {
+  height: 85px;
+  width: 112px;
+  margin: 0;
+  padding: 10px;
   position: absolute;
-  top: -50px;
-  right: 25px;
+  top: -85px;
+  right: 0;
   cursor: pointer;
   font-size: 20px; !important;
-  padding: 7px;
-  background-color: white;
-  color: #FE9251;
-  border: solid 1px white;}
+  background-color: #FE9251;
+  color: white;
+  border: 0}
 
 /*change color of button on hover*/
 #navbtn:hover {
-  padding: 10px;
-  background-color: #FE9251;
-  color: white;
-  border-style: none;}
+  width:}
 
 /*change text color of menu on hover*/
 #navbtn a:hover {
@@ -135,12 +132,16 @@ a:hover{
 /*container for navigation menu*/
 #navdrop {
   position: absolute;
-  top: 90px;
+  top: 85px;
   right: 0;}
 
 /*hide navigation menu list by default*/
 .nav2 {
-  display: none;}
+  display: none;
+  margin: 0;
+  width: 112px;
+  position: absolute;
+  right: 0;}
 
 /*styling for each menu selection*/
 .nav2 li {
@@ -171,8 +172,7 @@ a:hover{
 #navdrop:hover .nav2 {
   display: block;
   position: relative;
-  margin-top: -5px;
-  margin-right: 5px;
+  margin: 0;
   color: #FE9251;}
 
 /*hide button for bigger screens*/
@@ -201,11 +201,22 @@ button:hover {
 
 /*Homepage*/
 #home {
-  height: 50vh;
+  height: 30vh;
+  width: 25vw;
   text-align: center;
-  margin: 25vh;
+  margin: 5vw;
   padding: 3vw;
-  background: rgba(250, 250, 250, 0.8)}
+  position: absolute;
+  top: 25vh;
+  left: 3vw;
+  background: rgba(250, 250, 250, 0.8);
+}
+
+#home h1{
+  font-size: 30px; !important;
+  font-weight: lighter;
+  color:#398579;
+}
 
 /*bigger font size for bigger screens*/
 @media (min-width: 681px) {
@@ -217,46 +228,49 @@ button:hover {
   cursor: pointer;
   padding: 10px;
   margin: 50px;
-  background-color: white;
-  color: #FE9251;
-  border: solid 1px #FE9251;
-  font-size: 24px;
-  font-weight: bold;
-}
-
-#book:hover {
+  background-color: #398579;
   color: white;
-  background-color: #FE9251;
-  border-style: 2px none;
+  font-size: 20px; !important;
+  font-weight: bold;
 }
 
 /*Packages page*/
 #packages {
+  height: 95vh;
   margin: 25px;
   font-size: 20px;
   color: #398579;}
 
 #packages h1 {
   font-size: 30px; !important;
-  margin: 50px;
+  margin-bottom: 50px;
 }
 
 .eachpackage {
   list-style: none;
   text-align: left;
-  width: 40vw;
-  margin: 25px;
-  padding: 25px;
-  background: rgba(250, 250, 250, 0.9);
+  width: 18vw;
+  height: 73vh;
+  margin: 20px;
+  padding: 10px;
   display: inline-block;
+  -moz-box-shadow:    3px 3px 5px 1px #818181;
+  -webkit-box-shadow: 3px 3px 5px 1px #818181;
+  box-shadow:         3px 3px 5px 1px #818181;
+  background: white;
 }
 
-.eachpackage h3 {
-  margin: 10px 0;
+.eachpackage img {
+	width: 18vw;
+	height: 18vw;
+}
+
+.eachpackage h6 {
+  margin: 5px 0;
 }
 
 .eachpackage td {
-  padding: 10px;
+  padding: 5px;
 }
 
 /*Login*/
@@ -286,34 +300,17 @@ button:hover {
   font-size: 20px;
 }
 
+.contain-reg {
+  text-align: center;
+  height: 900px;
+  margin-top: 85px;
+  padding-top: 1px;
+  padding-bottom: 50px;
+  }
+  
 #regbtn{
   margin-left: 30px; 
   margin-bottom: 25px;
-}
-
-#entry {
-  background: rgba(250, 250, 250, 0.8);
-  text-align: left;
-  margin-top: 30px;
-  margin-left: 30px;
-  width: auto;
-  padding: 30px;
-  font-size: 20px;
-  color: #398579;
-}
-
-#entry h1{
-	font-size: 24px;
-	margin-bottom: 50px;	
-}
-
-#entry button{
-	margin: 0 25px 50px 0;
-}
-
-#error{
-  color: red;
-  font-size: 16px;
 }
 
 #reg {
@@ -368,6 +365,31 @@ form td {
     }
 }
 
+#entry {
+  background: rgba(250, 250, 250, 0.8);
+  text-align: left;
+  margin-top: 30px;
+  margin-left: 30px;
+  width: 650px;
+  padding: 30px;
+  font-size: 20px;
+  color: #398579;
+}
+
+#entry h1{
+	font-size: 24px;
+	margin-bottom: 50px;	
+}
+
+#entry button{
+	margin: 0 25px 50px 0;
+}
+
+#error{
+  color: red;
+  font-size: 16px;
+}
+
 /*Agent Tables*/
 #agttables {
 	background: rgba(250, 250, 250, 0.9);
@@ -404,4 +426,25 @@ form td {
 	padding: 50px;
 	margin: 100px;
 	color: #398579;
+}
+
+footer{
+	background: #398579;
+	color: white;
+	padding: 25px;
+}
+
+footer h1{
+	font-size: 24px;
+	margin-bottom: 10px;
+}
+
+#info p{
+	margin-bottom: 10px;
+}
+
+#copyright{
+	position: fixed;
+	right: 7px;
+	bottom: 7px;
 }

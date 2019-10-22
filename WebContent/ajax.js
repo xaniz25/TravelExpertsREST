@@ -9,7 +9,7 @@ function addCustomer(myform) //register as new customer
 		+ '","custEmail":"' + myform.custEmail.value
 		+ '","custPostal":"' + myform.custPostal.value
 		+ '","custProv":"' + myform.custProv.value
-		+ '","custUserID":"' + myform.custUserID.value
+		+ '","custUserID":"' + myform.custUserId.value
 		+ '","custUserPwd":"' + myform.custUserPwd.value + '"}';
 	
 	console.log(data);
@@ -40,6 +40,7 @@ function getCustomer(id)
 }
 
 function handleCust(data){
+	console.log(data);
 	$("#customerId").val(data.customerId);
 	$("#custFirstName").val(data.custFirstName);
 	$("#custLastName").val(data.custLastName);
@@ -50,8 +51,7 @@ function handleCust(data){
 	$("#custCountry").val(data.custCountry);
 	$("#custPhone").val(data.custPhone);
 	$("#custEmail").val(data.custEmail);
-	$("#custUserID").val(data.custUserId);
-	$("#custUserPwd").val(data.custUserPwd)
+	$("#custUserId").val(data.custUserID);
 }
 
 function updateCustomer(myform)
@@ -66,7 +66,7 @@ function updateCustomer(myform)
 			+ '","custLastName":"' + myform.custLastName.value
 			+ '","custPostal":"' + myform.custPostal.value
 			+ '","custProv":"' + myform.custProv.value
-			+ '","custUserID":"' + myform.custUserID.value + '"}';
+			+ '","custUserId":"' + myform.custUserId.value + '"}';
 			
 		$.ajax({
 			url:"http://localhost:8080/TravelExperts/rs/customer/postcustomer",
@@ -93,7 +93,7 @@ function updateAccount(id, myform) //update as customer
 		+ '","custLastName":"' + myform.custLastName.value
 		+ '","custPostal":"' + myform.custPostal.value
 		+ '","custProv":"' + myform.custProv.value
-		+ '","custUserID":"' + myform.custUserID.value
+		+ '","custUserId":"' + myform.custUserId.value
 		+ '"."custUserPwd":"' + myform.custUserPwd.value + '"}';
 		
 	$.ajax({

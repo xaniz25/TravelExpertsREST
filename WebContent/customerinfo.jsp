@@ -1,7 +1,7 @@
 <%@ include file="head.jsp" %>
   <title>Travel Experts Agents - Your Account</title>
 </head>
-<body onload="getCustomer(<%=session.getAttribute("customerId")%>); loadprovinces(this.value);">
+<body onload="getCustomer(<%=session.getAttribute("customerId")%>)">
 <%@ include file="nav.jsp"%>
 <% if(session.getAttribute("customerId")==null){
 out.print("<h1>Please login</h1>");
@@ -32,7 +32,7 @@ response.sendRedirect("customerlogin.jsp");
 					<td><input type="text" name="custPostal" id="custPostal" /></td>
 				</tr>
 				<tr><td>Country:</td>
-					<td><select name="custCountry" onchange="loadprovinces(this.value)">
+					<td><select name="custCountry">
 						<option value='Canada'>Canada</option>
 						<option value='United States'>United States</option>
 						</select></td>
@@ -50,11 +50,13 @@ response.sendRedirect("customerlogin.jsp");
 					<td><input type="password" name="custUserPwd" id="custUserPwd" /></td>
 				</tr>
 				<tr><td>Confirm Password:</td>
-					<td><input type="password" /></td>
+					<td><input type="password" name="confirmPwd" id="confirmPwd"/></td>
 				</tr>
 				</table>
 				<button onclick="return validateAcct()" value="submit">Edit</button>
 			</form>
+			</br>
+			<a href="customerwelcome.jsp"><button>Home</button></a>
 <% } %> <%--else--%>
 		</div>
 	</div>
