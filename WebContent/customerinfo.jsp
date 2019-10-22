@@ -11,7 +11,7 @@ response.sendRedirect("customerlogin.jsp");
 	<div class="contain">
 		<div id="formbg">
 			<p>Your Account Information</p>
-			<form action="accountupdated.jsp">
+			<form action="accountupdated.jsp" onSubmit="updateAccount(<%=session.getAttribute("customerId")%>, this)">
 				<table>
 				<tr><td>First Name:</td>
 					<td><input type="text" name="custFirstName" id="custFirstName"/></td>
@@ -44,7 +44,7 @@ response.sendRedirect("customerlogin.jsp");
 					<td><input type="text" name="custEmail" id="custEmail"/></td>
 				</tr>
 				<tr><td>User ID:</td>
-					<td><input type="text" name="custUserID" id="custUserID"/></td>
+					<td><input type="text" name="custUserId" id="custUserId"/></td>
 				</tr>
 				<tr><td>Change Password:</td>
 					<td><input type="password" name="custUserPwd" id="custUserPwd" /></td>
@@ -53,8 +53,7 @@ response.sendRedirect("customerlogin.jsp");
 					<td><input type="password" /></td>
 				</tr>
 				</table>
-				<button onclick="updateAccount(<%=session.getAttribute("customerId")%>, this.form)">Edit</button>
-				<button onclick="deleteAccount(<%=session.getAttribute("customerId")%>)">Delete Your Account</button>
+				<button onclick="return validateAcct()" value="submit">Edit</button>
 			</form>
 <% } %> <%--else--%>
 		</div>

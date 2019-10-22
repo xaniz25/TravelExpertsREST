@@ -5,7 +5,7 @@
 <%@ include file="nav.jsp"%>
 	<div id="home">
 		<img src="images/logo2.png"/><br/>
-		<a href="bookpackage.jsp"><button>View Our Packages></button></a>
+		<a href="bookpackage.jsp"><button id="book">View Our Packages</button></a>
 	</div>
 </body>
 </html>

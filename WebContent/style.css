@@ -6,6 +6,7 @@
   margin: 0;
   padding: 0;
   font-family: 'Raleway', sans-serif;
+  font-size: 18px;
   }
 
 /*fix the issue of the scrollbar preventing images to be displayed inline
@@ -70,12 +71,16 @@ a:hover{
    }
 
  /*navigation*/
+ #loginbar {
+ font-size: 18px; !important;}
+
  #loginbar a{
    float: right;
    display: inline;
    padding: 5px;
    margin: 5px;
    margin-right: 15px;
+   font-size: 18px; !important;
  }
 
  .nav {
@@ -93,6 +98,10 @@ a:hover{
    margin: 10px;
    padding: 10px;}
 
+.nav a {
+	font-size: 24px; !important;
+}
+
 /*hide navigation bar for smaller screens*/
 @media (max-width: 1080px) {
   .nav {
@@ -105,11 +114,11 @@ a:hover{
   top: -50px;
   right: 25px;
   cursor: pointer;
-  font-size: 20px;
+  font-size: 20px; !important;
   padding: 7px;
   background-color: white;
   color: #FE9251;
-  border: solid 2px white;}
+  border: solid 1px white;}
 
 /*change color of button on hover*/
 #navbtn:hover {
@@ -181,15 +190,13 @@ button {
   background-color: white;
   color: #d17238;
   border: solid 2px #FE9251;
-  border-radius: 5px;
-  font-size: 16px;
+  font-size: 18px; !important;
 }
 
 button:hover {
   color: white;
   background-color: #FE9251;
-  border-style: 3px none;
-  border-radius: 5px;
+  border-style: 2px none;
 }
 
 /*Homepage*/
@@ -197,7 +204,7 @@ button:hover {
   height: 50vh;
   text-align: center;
   margin: 25vh;
-  padding: 5vw;
+  padding: 3vw;
   background: rgba(250, 250, 250, 0.8)}
 
 /*bigger font size for bigger screens*/
@@ -206,16 +213,32 @@ button:hover {
     font-size: 35px; }
 }
 
+#book {
+  cursor: pointer;
+  padding: 10px;
+  margin: 50px;
+  background-color: white;
+  color: #FE9251;
+  border: solid 1px #FE9251;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+#book:hover {
+  color: white;
+  background-color: #FE9251;
+  border-style: 2px none;
+}
+
 /*Packages page*/
 #packages {
   margin: 25px;
   font-size: 20px;
   color: #398579;}
 
-#packages h3 {
-  margin-bottom: 25px;
-  width: 100%;
-  text-align: left;
+#packages h1 {
+  font-size: 30px; !important;
+  margin: 50px;
 }
 
 .eachpackage {
@@ -224,7 +247,7 @@ button:hover {
   width: 40vw;
   margin: 25px;
   padding: 25px;
-  background: rgba(250, 250, 250, 0.8);
+  background: rgba(250, 250, 250, 0.9);
   display: inline-block;
 }
 
@@ -244,17 +267,28 @@ button:hover {
   margin-left: 30px;
   width: 400px;
   padding: 30px;
-  font-size: 20px;
+  font-size: 24px;
   color: #398579;
+}
+
+#login form {
+  margin: 25px;
+  margin-bottom: 0;
 }
 
 #login p {
   margin-bottom: 10px;
+  font-size: 28px;
 }
 
 #login td, #agentlogin input {
-padding: 5px;
-font-size: 14px;
+  padding: 5px;
+  font-size: 20px;
+}
+
+#regbtn{
+  margin-left: 30px; 
+  margin-bottom: 25px;
 }
 
 #entry {
@@ -262,15 +296,30 @@ font-size: 14px;
   text-align: left;
   margin-top: 30px;
   margin-left: 30px;
-  width: 500px;
+  width: auto;
   padding: 30px;
   font-size: 20px;
   color: #398579;
 }
 
+#entry h1{
+	font-size: 24px;
+	margin-bottom: 50px;	
+}
+
+#entry button{
+	margin: 0 25px 50px 0;
+}
+
 #error{
   color: red;
   font-size: 16px;
+}
+
+#reg {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 25px;
 }
 
 /*All Forms*/
@@ -293,6 +342,10 @@ font-size: 14px;
       height: auto;
       padding: 20px;
       font-size: 24px;}
+}
+
+#formbg table {
+	margin-bottom: 25px;
 }
 
 /*actual form below title*/
@@ -320,19 +373,35 @@ form td {
 	background: rgba(250, 250, 250, 0.9);
 	padding: 25px;
 	margin: 25px;
-	font-size: 18px;
+	font-size: 18px; !important;
 	color: #398579;
 }
 
 #agttables table {
+	margin-top: 50px;
+	font-size: 18px;
     border-collapse: collapse;
     width: 100%;
 }
 
+#agenttables th{
+	font-size: 18px;
+}
+
 #agttables tr {
+	font-size: 18px;
     border-bottom: 1px solid #398579;
 }
 
 #agttables td {
+	font-size: 18px;
 	padding: 5px;
+}
+
+#message{
+	background: rgba(250, 250, 250, 0.9);
+	width: auto;
+	padding: 50px;
+	margin: 100px;
+	color: #398579;
 }

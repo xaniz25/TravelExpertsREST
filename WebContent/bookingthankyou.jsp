@@ -3,10 +3,12 @@
 </head>
 <body>
 <%@ include file="nav.jsp" %>
-	<div id="thankyou">
-		Enjoy your trip!
-		Thank you for booking a package with us!
+	<div class="contain">
+		<div id="message">
+			<h3>Enjoy your trip! </br>
+			Thank you for booking a package with us!</h3></br>
+			<a href="customerbookings.jsp"><button>View your bookings</button></a>
+			</div>
 	</div>
-<a href="customerbookings.jsp"><button>View your bookings</button></a>
 </body>
 </html>

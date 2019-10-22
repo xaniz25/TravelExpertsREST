@@ -6,18 +6,20 @@
 	<div class="contain">
 		<div id="agttables">
 			</br>
-			<h3>Customers</h3>
+			<h1>Customers</h1>
 			</br>
-<% /* if(session.getAttribute("agentId")==null){
+<% if(session.getAttribute("agentId")==null){
 out.print("<h1>Please login</h1>");
 response.sendRedirect("agentlogin.jsp");
-}else{ */
+}else{
 	try{
 	    Class.forName("org.mariadb.jdbc.Driver");
 	    Connection con = (Connection) DriverManager.getConnection("jdbc:mariadb://localhost:3306/travelexperts","root","");
 	    Statement st = con.createStatement();
 	    ResultSet rs = st.executeQuery("select * from Customers;");
 %>
+	<a href="agentwelcome.jsp"><button>Home</button></a>
+
 	<table>
       <thead>
           <tr>
@@ -60,7 +62,7 @@ response.sendRedirect("agentlogin.jsp");
     catch(Exception e){
         out.print(e.getMessage());%><br><%
     }
-
+}
 %>
 		</div>
 	</div>

@@ -1,16 +1,18 @@
-function addCustomer(myform)
+function addCustomer(myform) //register as new customer
 {
-	var data = '{"custAddress":"' + myform.custAddress.value
+	var data = '{"custFirstName":"' + myform.custFirstName.value
+		+ '","custLastName":"' + myform.custLastName.value
+		+ '","custAddress":"' + myform.custAddress.value
 		+ '","custPhone":"' + myform.custPhone.value
 		+ '","custCity":"' + myform.custCity.value
 		+ '","custCountry":"' + myform.custCountry.value
 		+ '","custEmail":"' + myform.custEmail.value
-		+ '","custFirstName":"' + myform.custFirstName.value
-		+ '","custLastName":"' + myform.custLastName.value
 		+ '","custPostal":"' + myform.custPostal.value
 		+ '","custProv":"' + myform.custProv.value
 		+ '","custUserID":"' + myform.custUserID.value
 		+ '","custUserPwd":"' + myform.custUserPwd.value + '"}';
+	
+	console.log(data);
 		
 	$.ajax({
 		url:"http://localhost:8080/TravelExperts/rs/customer/putcustomer",
@@ -19,6 +21,8 @@ function addCustomer(myform)
 		contentType:"application/json",
 		dataType:"text"
 	});
+	
+	window.location = 'http://localhost:8080/TravelExperts/registerthankyou.jsp';
 }
 
 function modifyCustomer(id)
@@ -36,8 +40,6 @@ function getCustomer(id)
 }
 
 function handleCust(data){
-	console.log(data);
-	console.log(JSON.stringify(data));
 	$("#customerId").val(data.customerId);
 	$("#custFirstName").val(data.custFirstName);
 	$("#custLastName").val(data.custLastName);
@@ -48,7 +50,7 @@ function handleCust(data){
 	$("#custCountry").val(data.custCountry);
 	$("#custPhone").val(data.custPhone);
 	$("#custEmail").val(data.custEmail);
-	$("#custUserID").val(data.custUserID);
+	$("#custUserID").val(data.custUserId);
 	$("#custUserPwd").val(data.custUserPwd)
 }
 
@@ -72,17 +74,14 @@ function updateCustomer(myform)
 			type:"POST",
 			contentType:"application/json",
 			dataType:"text" });
-		
-		window.location = 'http://localhost:8080/TravelExperts/customers.jsp?reload';
 }
 
 function deleteCustomer(id)
 {
 	$.ajax({url:"http://localhost:8080/TravelExperts/rs/customer/deletecustomer/" + id,type:"DELETE"});
-	window.location = 'http://localhost:8080/TravelExperts/customers.jsp?reload';
 }
 
-function updateAccount(id, myform)
+function updateAccount(id, myform) //update as customer
 {
 	var data = '{"customerId":' + id
 		+ ',"custAddress":"' + myform.custAddress.value
@@ -107,14 +106,35 @@ function updateAccount(id, myform)
 	window.location = 'http://localhost:8080/TravelExperts/accountupdated.jsp';
 }
 
-function deleteAccount(id)
+function deleteAccount(id) //delete as customer
 {
 	$.ajax({url:"http://localhost:8080/TravelExperts/rs/customer/deletecustomer/" + id, type:"DELETE"});
-	window.location = 'http://localhost:8080/TravelExperts/accountdeleted.jsp';
 }
 
 function bookPackage(pkgid){
-	window.location.replace('http://localhost:8080/TravelExperts/checkout.jsp?packageId='+pkgid);
+	window.location = 'http://localhost:8080/TravelExperts/checkout.jsp?packageId='+pkgid;
+}
+
+function checkout(myform, custid, pkgid)
+{
+	var date = new Date();
+	date.setTime(date.getTime() + date.getTimezoneOffset()*60*1000 );
+	
+	var data = '{"bookingDate":"' + date.getFullYear() + '-' + ('0' + (date.getMonth()+1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2)
+		+ '","travelerCount":' + myform.travelerCount.value
+		+ ',"customerId":' + custid
+		+ ',"tripType":"' + myform.tripType.value
+		+ '","packageId":' + pkgid + '}';
+		
+	$.ajax({
+		url:"http://localhost:8080/TravelExperts/rs/booking/putbooking",
+		data: data,
+		type:"PUT",
+		contentType:"application/json",
+		dataType:"text"
+	});
+	
+	window.location = 'http://localhost:8080/TravelExperts/bookingthankyou.jsp';
 }
 
 function modifyPackage(id)
@@ -131,7 +151,6 @@ function getPackage(id){
 }
 
 function handlePkg(data){
-	console.log(JSON.stringify(data));
 	$("#packageId").val(data.packageId);
 	$("#pkgName").val(data.pkgName);
 	$("#pkgDesc").val(data.pkgDesc);
@@ -164,7 +183,12 @@ function addPackage(myform)
 
 function updatePackage(myform){
 	var start = new Date(myform.pkgStartDate.value);
+	start.setTime(start.getTime() + start.getTimezoneOffset()*60*1000 );
 	var end = new Date(myform.pkgEndDate.value);
+	end.setTime(end.getTime() + end.getTimezoneOffset()*60*1000 );
+	
+	console.log(start);
+	console.log(end);
 	
 	var data = '{"packageId":' + myform.packageId.value
 		+ ',"pkgName":"' + myform.pkgName.value
@@ -173,20 +197,17 @@ function updatePackage(myform){
 		+ '","pkgEndDate":"' + end.getFullYear() + '-' + ('0' + (end.getMonth()+1)).slice(-2) + '-' + ('0' + end.getDate()).slice(-2)
 		+ '","pkgBasePrice":' + myform.pkgBasePrice.value
 		+ ',"pkgAgencyCommission":' + myform.pkgAgencyCommission.value + '}';
-
+	
 	$.ajax({
 		url:"http://localhost:8080/TravelExperts/rs/package/postpackage",
 		data: data,
 		type:"POST",
 		contentType:"application/json",
 		dataType:"text"});
-	
-	 window.location = 'http://localhost:8080/TravelExperts/packages.jsp?reload'
 }
 
 function deletePackage(id){
 	$.ajax({url:'http://localhost:8080/TravelExperts/rs/package/deletepackage/' + id, type:"DELETE"});
-	window.location = 'http://localhost:8080/TravelExperts/packages.jsp?reload'
 }
 
 function modifyBooking(id)
@@ -215,6 +236,7 @@ function handleBk(data){
 function addBooking(myform)
 {
 	var date = new Date();
+	date.setTime(date.getTime() + date.getTimezoneOffset()*60*1000 );
 	
 	var data = '{"bookingDate":"' + date.getFullYear() + '-' + ('0' + (date.getMonth()+1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2)
 		+ '","travelerCount":' + myform.travelerCount.value
@@ -233,6 +255,7 @@ function addBooking(myform)
 
 function updateBooking(myform){
 	var date = new Date(myform.bookingDate.value);
+	date.setTime(date.getTime() + date.getTimezoneOffset()*60*1000 );
 	
 	var data = '{"bookingId":' + myform.bookingId.value
 		+ ',"bookingDate":' + date.getFullYear() + '-' + ('0' + (date.getMonth()+1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2)
@@ -248,34 +271,10 @@ function updateBooking(myform){
 		contentType:"application/json",
 		dataType:"text"
 	});
-	
-	window.location = 'http://localhost:8080/TravelExperts/bookings.jsp?reload'
 }
 
 function deleteBooking(id){
 	$.ajax({ url:"http://localhost:8080/TravelExperts/rs/booking/deletebooking/" + id, type:"DELETE" });
-	window.location = 'http://localhost:8080/TravelExperts/bookings.jsp?reload';
-}
-
-function checkout(myform, custid, pkgid)
-{
-	var date = new Date();
-	
-	var data = '{"bookingDate":"' + date.getFullYear() + '-' + ('0' + (date.getMonth()+1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2)
-		+ '","travelerCount":' + myform.travelerCount.value
-		+ ',"customerId":' + custid
-		+ ',"tripType":"' + myform.tripType.value
-		+ '","packageId":' + pkgid + '}';
-
-		console.log(data);
-		
-	$.ajax({
-		url:"http://localhost:8080/TravelExperts/rs/booking/putbooking",
-		data: data,
-		type:"PUT",
-		contentType:"application/json",
-		dataType:"text"
-	});
 }
 
 function loadprovinces(country){

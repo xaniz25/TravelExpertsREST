@@ -11,8 +11,10 @@ response.sendRedirect("customerlogin.jsp");
 	<div class="contain">
 		<div id="entry">
 			<h1>Welcome, <%=session.getAttribute("custFirstName") %>!</h1>
-			<a href="customerbookings.jsp"><button>Your Bookings</button></a></br>
-			<a href="customerinfo.jsp"><button>Your Account</button></a></br>
+			<a href="customerbookings.jsp"><button>Your Bookings</button></a>
+			<a href="customerinfo.jsp"><button>Your Account</button></a>
+			<a href="accountdeleted.jsp"><button onclick="deleteAccount(<%=session.getAttribute("customerId")%>)">Delete Your Account</button></a>
+			</br>
 			<a href="logout.jsp"><button>Logout</button></a>
 <% } %> <%--else--%>
 		</div>

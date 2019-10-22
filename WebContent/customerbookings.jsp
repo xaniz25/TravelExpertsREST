@@ -26,7 +26,6 @@ response.sendRedirect("customerlogin.jsp");
 		             <th>Traveler Count</th>
 		             <th>Trip Type</th>
 		             <th>Package</th>
-		             <th>Package</th>
 		             <th>Description</th>
 		             <th>Price</th>
 		          </tr>

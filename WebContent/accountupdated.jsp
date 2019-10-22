@@ -1,12 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<%@ include file="head.jsp" %>
+  <title>Travel Experts - Home</title>
 </head>
 <body>
-
+<%@ include file="nav.jsp"%>
+	<div class="contain">
+		<div id="message">
+			<h3>Your account has been updated.</h3>
+			</br>
+			<a href="customerwelcome.jsp"><button>Home</button></a>
+		</div>
+	</div>
 </body>
 </html>

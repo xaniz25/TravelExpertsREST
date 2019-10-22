@@ -11,14 +11,21 @@ response.sendRedirect("customerlogin.jsp");
 <h1><%=session.getAttribute("customerId")%></h1><%=request.getParameter("packageId")%>
 	<div class="contain">
 		<div id="formbg">
-			<form action="bookingthankyou.jsp">
-				Traveler Count: <input type="number" name="travelerCount" /><br />
-				Trip Type: <select name="tripType">
-					<option value="Leisure">Leisure</option>
-					<option value="Business">Business</option>
-					<option value="Group">Group</option>
-				</select><br />
-				<button onclick="checkout(this.form, <%=session.getAttribute("customerId")%>, <%=request.getParameter("packageId")%>)">Add</button>
+			<form action="bookingthankyou.jsp" onSubmit="checkout(this, <%=session.getAttribute("customerId")%>, <%=request.getParameter("packageId")%>)">
+				<p id="registerError" style="font-size: 18px; visibility: hidden; color: red">Please complete form and check format!</p>
+				<table>
+				<tr><td>Traveler Count:</td>
+					<td><input type="number" name="travelerCount" id="travelerCount" /></td>
+				</tr>
+				<tr><td>Trip Type:</td>
+					<td><select name="tripType" id="tripType">
+						<option value="Leisure">Leisure</option>
+						<option value="Business">Business</option>
+						<option value="Group">Group</option>
+					</select></td>
+				</tr>
+				</table>
+				<button onClick="return validateCheckout()" value="submit">Add</button>
 			</form>
 <% } %> <%--else--%>
 		</div>

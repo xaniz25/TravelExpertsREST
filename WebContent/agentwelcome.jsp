@@ -13,7 +13,7 @@ response.sendRedirect("agentlogin.jsp");
 			<h1>Welcome, <%=session.getAttribute("agtFirstName") %>!</h1>
 			<a href="bookings.jsp"><button>Bookings</button></a>
 			<a href="packages.jsp"><button>Packages</button></a>
-			<a href="customers.jsp"><button>Customers</button></a> </br>
+			<a href="customers.jsp"><button>Customers</button></a></br>
 			<a href="logout.jsp"><button>Logout</button></a>
 	<% } %> <%--else--%>
 		</div>

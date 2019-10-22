@@ -9,20 +9,23 @@
 %>
 	<div class="contain">
 	    <div id="login">
-			<form onSubmit="return checkLogin()" action="CustomerLogin" method="post">
-	    	<% if(request.getParameter("login")=="invalid"){
-	    		out.println("<p id='error'>Invalid UserID or Password"); } %>
+			<form action="CustomerLogin" method="post">
 				<p>Customer Login</p>
+	    		<% if(request.getParameter("login")=="invalid"){ %>
+	    		<p id='error'>Invalid UserID or Password!</p>
+	    		<% } %>
+				<p id="loginError" style="font-size: 18px; visibility: hidden; color: red">Invalid UserID or Password!</p>
 				<table>
 					<tr><td>UserID:</td>
 						<td><input type="text" name="custUserId" id="uid" /></td>
 					</tr>
 					<tr><td>Password:</td>
-						<td><input type="text" name="custUserPwd" id="pwd" /></td>
+						<td><input type="password" name="custUserPwd" id="pwd" /></td>
 					</tr>
 				</table>
-				<button>Login</button>
+				<button onClick="return checkLogin()">Login</button>
 			</form>
+			<a href="register.jsp"><button id="regbtn">Register</button></a>
 <% } %> <%--else--%>
 		</div>
 	</div>
