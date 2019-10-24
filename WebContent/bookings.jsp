@@ -30,7 +30,9 @@ response.sendRedirect("agentlogin.jsp");
              <th>Customer ID</th>
              <th>Traveler Count</th>
              <th>Trip Type</th>
-             <th>Package Id</th>
+             <th>Package ID</th>
+             <th>Trip Start</th>
+             <th>Trip End</th>
           </tr>
       </thead>
       <tbody>
@@ -42,6 +44,8 @@ response.sendRedirect("agentlogin.jsp");
                 <td><%=rs.getInt("TravelerCount") %></td>
                 <td><%=rs.getString("TripType") %></td>
                 <td><%=rs.getInt("PackageId") %></td>
+                <td><%=rs.getDate("TripStart") %></td>
+                <td><%=rs.getDate("TripEnd") %></td>
                 <td><button id="<%=rs.getInt("BookingId") %>" onClick="modifyBooking(this.id)">Modify</button>
             </tr>
          <%}%>

@@ -4,6 +4,7 @@
  <a href="index.jsp"><img src="images/logo2.png"/></a>
 
  <div id=loginbar>
+   <a href="logout.jsp">Logout</a>
    <a href="agentlogin.jsp">
      <%
      if(session.getAttribute("agtFirstName")!=null)
@@ -39,6 +40,7 @@
      <li><a href="register.jsp">Register</a></li>
      <li><a href="customerlogin.jsp">Customer</a></li>
      <li><a href="agentlogin.jsp">Agent</a></li>
+     <li><a href="logout.jsp">Logout</a></li>
    </ul>
  </div>
 

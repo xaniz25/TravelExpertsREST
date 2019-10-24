@@ -9,7 +9,7 @@ response.sendRedirect("customerlogin.jsp");
 <%@ include file="nav.jsp"%>
 	<div class="contain">
 		<div id="agttables">
-			<a href="bookpackage.jsp"><button>Make new booking</button></a></br>
+			<a href="index.jsp#packages"><button>Make new booking</button></a></br>
 			<% try {
 			        Class.forName("org.mariadb.jdbc.Driver");
 			        Connection con = (Connection) DriverManager.getConnection("jdbc:mariadb://localhost:3306/travelexperts","root","");
@@ -23,11 +23,12 @@ response.sendRedirect("customerlogin.jsp");
 		          <tr>
 		             <th>Booking ID</th>
 		             <th>Booking Date</th>
+		             <th>Package</th>
+		             <th>Price</th>
 		             <th>Traveler Count</th>
 		             <th>Trip Type</th>
-		             <th>Package</th>
-		             <th>Description</th>
-		             <th>Price</th>
+		             <th>Trip Start</th>
+             		 <th>Trip End</th>
 		          </tr>
 		      </thead>
 		      <tbody>
@@ -35,11 +36,12 @@ response.sendRedirect("customerlogin.jsp");
 		            <tr>
 		                <td><%=rs.getInt("BookingId") %></td>
 		                <td><%=rs.getDate("BookingDate") %></td>
+		                <td><%=rs.getString("PkgName") %></td>
+		                <td><%=rs.getDouble("PkgBasePrice") %></td>
 		                <td><%=rs.getInt("TravelerCount") %></td>
 		                <td><%=rs.getString("TripType") %></td>
-		                <td><%=rs.getString("PkgName") %></td>
-		                <td><%=rs.getString("PkgDesc") %></td>
-		                <td><%=rs.getDouble("PkgBasePrice") %></td>
+		                <td><%=rs.getDate("TripStart") %></td>
+               			<td><%=rs.getDate("TripEnd") %></td>
 		            </tr>
 		         <%}%>
 		           </tbody>

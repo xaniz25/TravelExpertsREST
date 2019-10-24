@@ -43,6 +43,9 @@
 					<tr><td>User ID:</td>
 						<td><input type="text" name="custUserId" id="custUserId" /></td>
 					</tr>
+					<tr><td>Password:</td>
+					<td><input type="password" name="custUserPwd" id="custUserPwd" readonly /></td>
+					</tr>
 				</table>
 				<button onclick="return validateModifyCust()" value="submit">Edit</button>
 				<button onclick="deleteCustomer(<%=request.getParameter("CustomerId")%>)">Delete</button>

@@ -24,6 +24,12 @@
 					<tr><td>Package ID:</td>
 						<td><input type="number" name="packageId" id="packageId" /></td>
 					</tr>
+					<tr><td>Trip Start:</td>
+						<td><input type="date" name="tripStart" id="tripStart" /></td>
+					</tr>
+					<tr><td>Trip End:</td>
+						<td><input type="date" name="tripEnd" id="tripEnd" /></td>
+					</tr>
 				</table>
 				<button onclick="return validateAddBooking()" value="submit">Add</button>
 			</form>

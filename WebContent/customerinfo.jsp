@@ -46,7 +46,7 @@ response.sendRedirect("customerlogin.jsp");
 				<tr><td>User ID:</td>
 					<td><input type="text" name="custUserId" id="custUserId"/></td>
 				</tr>
-				<tr><td>Change Password:</td>
+				<tr><td>Password:</td>
 					<td><input type="password" name="custUserPwd" id="custUserPwd" /></td>
 				</tr>
 				<tr><td>Confirm Password:</td>

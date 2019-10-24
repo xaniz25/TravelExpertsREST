@@ -1,7 +1,7 @@
 	<footer>
 		<div id="info">
 			<p>Contact Us</p>
-			<p>Address:</br></br>
+			<p>Address:</br>
 			1155 8th Ave SW</br>
 			Calgary, AB, T2P1N3
 			</p>

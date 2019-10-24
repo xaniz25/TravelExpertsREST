@@ -275,14 +275,26 @@ function validateAcct() {
 	  else
 	    {document.getElementById('custUserId').style.borderColor='green';}
 	  
-	  //verify if password matches if customer decides to update it
-	  var pwd=document.getElementById('custUserPwd').value;
-	  var confirm=document.getElementById('confirmPwd').value;
-	  var n = pwd.localeCompare(confirm);
-	  if(n!=0)
-	  {document.getElementById('custUserPwd').style.borderColor='red';
-	   document.getElementById('confirmPwd').style.borderColor='red';
-	   check=false;}
+	  //verify if Password is entered and more than 8 characters
+	  var pwdlen=document.getElementById('custUserPwd').value.length;
+	  var confirmlen=document.getElementById('confirmPwd').value.length;
+	  if(pwdlen<8 || confirmlen==0)
+	    {document.getElementById('custUserPwd').style.borderColor='red';
+	    document.getElementById('confirmPwd').style.borderColor='red';
+	    check = false;}
+	  else
+	    { //verify if password matches
+		  var pwd=document.getElementById('custUserPwd').value;
+		  var confirm=document.getElementById('confirmPwd').value;
+		  var n = pwd.localeCompare(confirm);
+		  if(n!=0)
+		  {document.getElementById('custUserPwd').style.borderColor='red';
+		   document.getElementById('confirmPwd').style.borderColor='red';
+		   check=false;}
+		  else
+			  {document.getElementById('custUserPwd').style.borderColor='green';
+			   document.getElementById('confirmPwd').style.borderColor='green';}
+		  }
 	  
 	  if(check==false)
 		    document.getElementById('registerError').style.visibility = "visible";
@@ -319,6 +331,25 @@ function validateAddBooking() {
 	  
 	  if(check==false)
 		    document.getElementById('registerError').style.visibility = "visible";
+	  
+	  //verify if trip start date is entered
+	  var date=document.getElementById('tripStart').value;
+	  if(date=="")
+	  	{document.getElementById('tripStart').style.borderColor='red';
+	  	check=false;}
+	  else
+		{document.getElementById('tripStart').style.borderColor='green';}
+	  
+	  //verify if trip end date is entered
+	  var date=document.getElementById('tripEnd').value;
+	  if(date=="")
+	  	{document.getElementById('tripEnd').style.borderColor='red';
+	  	check=false;}
+	  else
+		{document.getElementById('tripEnd').style.borderColor='green';}
+	  
+	  if(check==false)
+		    document.getElementById('tripEnd').style.visibility = "visible";
 	  
 	  return check;
 }//function validateAddBooking
@@ -366,8 +397,24 @@ function validateModifyBooking() {
 	  else
 	    {document.getElementById('packageId').style.borderColor='green';}
 	  
+	 //verify if trip start date is entered
+	  var date=document.getElementById('tripStart').value;
+	  if(date=="")
+	  	{document.getElementById('tripStart').style.borderColor='red';
+	  	check=false;}
+	  else
+		{document.getElementById('tripStart').style.borderColor='green';}
+	  
+	//verify if trip end date is entered
+	  var date=document.getElementById('tripEnd').value;
+	  if(date=="")
+	  	{document.getElementById('tripEnd').style.borderColor='red';
+	  	check=false;}
+	  else
+		{document.getElementById('tripEnd').style.borderColor='green';}
+	  
 	  if(check==false)
-		    document.getElementById('registerError').style.visibility = "visible";
+		    document.getElementById('tripEnd').style.visibility = "visible";
 	  
 	  return check;
 }//function validateModifyBooking

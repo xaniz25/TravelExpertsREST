@@ -43,7 +43,7 @@
 					<td><input type="text" name="custEmail" id="custEmail" /></td>
 				</tr>
 				<tr><td>User ID:</td>
-					<td><input type="text" name="custUserID" id="custUserId" /></td>
+					<td><input type="text" name="custUserId" id="custUserId" /></td>
 				</tr>
 				<tr><td>Password (max 8 characters):</td>
 					<td><input type="password" name="custUserPwd" id="custUserPwd"/></td>

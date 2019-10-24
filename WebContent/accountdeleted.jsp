@@ -1,11 +1,11 @@
 <%@ include file="head.jsp" %>
+  <meta http-equiv="Refresh" content="3;url=http://localhost:8080/TravelExperts/index.jsp">
   <title>Travel Experts - Home</title>
 </head>
 <body>
 <%@ include file="nav.jsp"%>
 <%
 session.invalidate();
-response.sendRedirect("http://localhost:8080/TravelExperts/index.jsp");
 %>
 	<div class="contain">
 		<div id="message">
