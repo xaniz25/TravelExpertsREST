@@ -52,7 +52,6 @@
 					<td><input type="password" id="confirmPwd"/></td>
 				</tr>
 			</table>
-			<button onClick="return resetForm()" value="reset">Clear</button>
 			<button onClick="return validateRegForm()" value="submit">Register</button>
 		</form>
 	</div>

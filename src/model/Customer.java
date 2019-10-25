@@ -35,7 +35,7 @@ public class Customer implements Serializable {
 
 	private String custProv;
 
-	private String custUserID;
+	private String custUserId;
 
 	private String custUserPwd;
 
@@ -45,7 +45,7 @@ public class Customer implements Serializable {
 	
 	public Customer(int customerId, String custFirstName, String custLastName, String custAddress, String custCity,
 			String custProv, String custPostal, String custCountry, String custEmail, String custPhone,
-			String custUserID, String custUserPwd) {
+			String custUserId, String custUserPwd) {
 		super();
 		this.customerId = customerId;
 		this.custFirstName = custFirstName;
@@ -57,7 +57,7 @@ public class Customer implements Serializable {
 		this.custCountry = custCountry;
 		this.custEmail = custEmail;
 		this.custPhone = custPhone;
-		this.custUserID = custUserID;
+		this.custUserId = custUserId;
 		this.custUserPwd = custUserPwd;
 	}
 
@@ -142,12 +142,12 @@ public class Customer implements Serializable {
 		this.custProv = custProv;
 	}
 
-	public String getCustUserID() {
-		return this.custUserID;
+	public String getCustUserId() {
+		return this.custUserId;
 	}
 
-	public void setCustUserID(String custUserID) {
-		this.custUserID = custUserID;
+	public void setCustUserId(String custUserId) {
+		this.custUserId = custUserId;
 	}
 
 	public String getCustUserPwd() {

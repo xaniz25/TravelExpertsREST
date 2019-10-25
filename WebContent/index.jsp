@@ -9,15 +9,16 @@
 			<a href="#packages"><button id="book" class="animated fadeInUpBig slow">View Our Packages</button></a>
 		</div>
 	</div>
-	<div class="contain">
+	<div class="contain-pkg">
 		<div id="packages">
-			<h1>Our Packages</h1>
+			<h1>Our Top Packages</h1>
 				<ul>
 		<% try {
 	        Class.forName("org.mariadb.jdbc.Driver");
 	        Connection con = (Connection) DriverManager.getConnection("jdbc:mariadb://localhost:3306/travelexperts","root","");
 	        Statement st = con.createStatement();
-	        ResultSet rs = st.executeQuery("select * from Packages;");
+	      //displaying only top 4 packages
+	        ResultSet rs = st.executeQuery("select * from Packages limit 4;");
 			while(rs.next()){ %>
 				<li class="eachpackage">
 					<img src ="images/<%=rs.getString("PkgImg")%>" >

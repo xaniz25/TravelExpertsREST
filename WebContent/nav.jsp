@@ -27,7 +27,7 @@
  <!--Nav bar for bigger screens-->
  <ul class ="nav">
    <li><a href="index.jsp">Home</a></li>
-   <li><a href="index.jsp#packages">Packages</a></li>
+   <li><a href="bookpackage.jsp">Packages</a></li>
    <li><a href="register.jsp">Register</a></li>
  </ul>
 
@@ -36,7 +36,7 @@
    <button id="navbtn">Menu</button>
    <ul class ="nav2">
      <li><a href="index.jsp">Home</a></li>
-     <li><a href="index.jsp#packages">Packages</a></li>
+     <li><a href="bookpackage.jsp">Packages</a></li>
      <li><a href="register.jsp">Register</a></li>
      <li><a href="customerlogin.jsp">Customer</a></li>
      <li><a href="agentlogin.jsp">Agent</a></li>

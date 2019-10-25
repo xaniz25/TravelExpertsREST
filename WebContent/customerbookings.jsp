@@ -9,7 +9,8 @@ response.sendRedirect("customerlogin.jsp");
 <%@ include file="nav.jsp"%>
 	<div class="contain">
 		<div id="agttables">
-			<a href="index.jsp#packages"><button>Make new booking</button></a></br>
+			<a href="index.jsp#packages"><button>Make new booking</button></a>
+			<a href="customerwelcome.jsp"><button>Home</button></a></br>
 			<% try {
 			        Class.forName("org.mariadb.jdbc.Driver");
 			        Connection con = (Connection) DriverManager.getConnection("jdbc:mariadb://localhost:3306/travelexperts","root","");
