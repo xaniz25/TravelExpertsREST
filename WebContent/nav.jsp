@@ -1,4 +1,6 @@
-<!--Shanice Talan-->
+<!--Shanice Talan October 2019
+Navigation bar and buttons-->
+
 <header>
  <!--Logo and Title-->
  <a href="index.jsp"><img src="images/logo2.png"/></a>

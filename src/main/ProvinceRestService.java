@@ -1,8 +1,6 @@
-/* Created by Shanice Talan on October 8, 2019
- * OOSD Spring 2019 - CPRG 220 - Day 5 AJAX Exercise
- * REST service that connects to database, gets list of provinces
- * and returns it as JSON
- */
+/* Created by Shanice Talan October 15, 2019 PROJ207 OOSD Spring 2019
+Travel Website where customers can register, login, book packages, update and delete their account,
+and where agents can login, add, update and delete bookings and packages, and update customers */
 
 package main;
 

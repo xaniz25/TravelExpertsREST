@@ -1,3 +1,7 @@
+/* Created by Shanice Talan October 15, 2019 PROJ207 OOSD Spring 2019
+Travel Website where customers can register, login, book packages, update and delete their account,
+and where agents can login, add, update and delete bookings and packages, and update customers */
+
 package main;
 
 import java.io.IOException;
@@ -25,7 +29,6 @@ public class AgentLogin extends HttpServlet {
      */
     public AgentLogin() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -34,6 +37,7 @@ public class AgentLogin extends HttpServlet {
 		HttpSession session = request.getSession();
 		Connection conn = null;
 		
+		//checks database if userid and pwd combination exists
 		try {
 			Class.forName("org.mariadb.jdbc.Driver");
 			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/travelexperts", "root", ""); 

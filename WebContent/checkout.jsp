@@ -1,8 +1,14 @@
+<%-- Created by Shanice Talan October 15, 2019 PROJ207 OOSD Spring 2019
+Travel Website where customers can register, login, book packages, update and delete their account,
+and where agents can login, add, update and delete bookings and packages, and update customers--%>
+
+<%-- Checkout page --%>
 <%@ include file="head.jsp"%>
 <title>Travel Experts - Thank you for Booking</title>
 </head>
 <body>
 <%@ include file="nav.jsp"%>
+<%-- check if customer is logged in first --%>
 <% if(session.getAttribute("customerId")==null){
 out.print("<h1>Please login</h1>");
 response.sendRedirect("customerlogin.jsp");
@@ -25,7 +31,14 @@ response.sendRedirect("customerlogin.jsp");
 						<option value="Group">Group</option>
 					</select></td>
 				</tr>
+				<tr><td>Trip Start:</td>
+						<td><input type="date" name="tripStart" id="tripStart" /></td>
+					</tr>
+					<tr><td>Trip End:</td>
+						<td><input type="date" name="tripEnd" id="tripEnd" /></td>
+				</tr>
 				</table>
+				<!-- for future use, data doesn't go anywhere -->
 				<p>Payment Information</p>
 				<table>
 				<tr><td>Card Type</td>

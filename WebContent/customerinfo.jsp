@@ -1,3 +1,8 @@
+<%-- Created by Shanice Talan October 15, 2019 PROJ207 OOSD Spring 2019
+Travel Website where customers can register, login, book packages, update and delete their account,
+and where agents can login, add, update and delete bookings and packages, and update customers--%>
+
+<%-- Customer can update their info here --%>
 <%@ include file="head.jsp" %>
   <title>Travel Experts Agents - Your Account</title>
 </head>

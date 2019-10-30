@@ -553,6 +553,22 @@ function validateCheckout(){
 	  else
 	  	{document.getElementById('travelerCount').style.borderColor='green';}
 	  
+	  //verify if trip start date is entered
+	  var date=document.getElementById('tripStart').value;
+	  if(date=="")
+	  	{document.getElementById('tripStart').style.borderColor='red';
+	  	check=false;}
+	  else
+		{document.getElementById('tripStart').style.borderColor='green';}
+	  
+	  //verify if trip end date is entered
+	  var date=document.getElementById('tripEnd').value;
+	  if(date=="")
+	  	{document.getElementById('tripEnd').style.borderColor='red';
+	  	check=false;}
+	  else
+		{document.getElementById('tripEnd').style.borderColor='green';}
+	  
 	  if(check==false)
 		    document.getElementById('registerError').style.visibility = "visible";
 	  
