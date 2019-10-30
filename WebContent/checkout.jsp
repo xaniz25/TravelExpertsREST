@@ -33,9 +33,9 @@ response.sendRedirect("customerlogin.jsp");
 				</tr>
 				<tr><td>Trip Start:</td>
 						<td><input type="date" name="tripStart" id="tripStart" /></td>
-					</tr>
-					<tr><td>Trip End:</td>
-						<td><input type="date" name="tripEnd" id="tripEnd" /></td>
+				</tr>
+				<tr><td>Trip End:</td>
+					<td><input type="date" name="tripEnd" id="tripEnd" /></td>
 				</tr>
 				</table>
 				<!-- for future use, data doesn't go anywhere -->

@@ -146,8 +146,8 @@ function checkout(myform, custid, pkgid)
 		+ ',"customerId":' + custid
 		+ ',"tripType":"' + myform.tripType.value
 		+ '","packageId":' + pkgid
-		+ ',"tripStart":"' + date.getFullYear() + '-' + ('0' + (date.getMonth()+1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2)
-		+ '","tripEnd":"' + date.getFullYear() + '-' + ('0' + (date.getMonth()+1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2) + '"}';
+		+ ',"tripStart":"' + start.getFullYear() + '-' + ('0' + (start.getMonth()+1)).slice(-2) + '-' + ('0' + start.getDate()).slice(-2)
+		+ '","tripEnd":"' + end.getFullYear() + '-' + ('0' + (end.getMonth()+1)).slice(-2) + '-' + ('0' + end.getDate()).slice(-2) + '"}';
 		
 	$.ajax({
 		url:"http://localhost:8080/TravelExperts/rs/booking/putbooking",
@@ -283,8 +283,8 @@ function addBooking(myform) //same functionality as checkout but this is for age
 		+ ',"customerId":' + myform.customerId.value
 		+ ',"tripType":"' + myform.tripType.value
 		+ '","packageId":' + myform.packageId.value
-		+ ',"tripStart":"' + date.getFullYear() + '-' + ('0' + (date.getMonth()+1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2)
-		+ '","tripEnd":"' + date.getFullYear() + '-' + ('0' + (date.getMonth()+1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2) + '"}';
+		+ ',"tripStart":"' + start.getFullYear() + '-' + ('0' + (start.getMonth()+1)).slice(-2) + '-' + ('0' + start.getDate()).slice(-2)
+		+ '","tripEnd":"' + end.getFullYear() + '-' + ('0' + (end.getMonth()+1)).slice(-2) + '-' + ('0' + end.getDate()).slice(-2) + '"}';
 	
 	$.ajax({
 		url:"http://localhost:8080/TravelExperts/rs/booking/putbooking",
@@ -311,8 +311,8 @@ function updateBooking(myform){ //for agent use
 		+ ',"customerId":' + myform.customerId.value
 		+ ',"tripType":"' + myform.tripType.value
 		+ '","packageId":' + myform.packageId.value 
-		+ ',"tripStart":"' + date.getFullYear() + '-' + ('0' + (date.getMonth()+1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2)
-		+ '","tripEnd":"' + date.getFullYear() + '-' + ('0' + (date.getMonth()+1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2) + '"}';
+		+ ',"tripStart":"' + start.getFullYear() + '-' + ('0' + (start.getMonth()+1)).slice(-2) + '-' + ('0' + start.getDate()).slice(-2)
+		+ '","tripEnd":"' + end.getFullYear() + '-' + ('0' + (end.getMonth()+1)).slice(-2) + '-' + ('0' + end.getDate()).slice(-2) + '"}';
 
 	$.ajax({
 		url:"http://localhost:8080/TravelExperts/rs/booking/postbooking",
