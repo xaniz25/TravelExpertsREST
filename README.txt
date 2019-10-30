@@ -13,10 +13,3 @@ Provinces (same as Day 5 Exercise): provCode - varchar 2, provName - varchar 20,
 Use Wildfly 11 server (install first to get rid of jsp errors)
 Need to configure build path to add jre/jdk (I used jre 10.0.2)
 might need to synchronize class list, and validate to get rid of jpa errors
-
-Power point done by Shanice as well
-
-Team 3:
-JavaFX desktop app: Kenji Jumalon, Sabiha Mohsen
-Android app: Robert Nielsen
-JSP: Shanice Talan
